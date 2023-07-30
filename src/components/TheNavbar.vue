@@ -4,10 +4,8 @@
       <div class="container">
         <div class="navbar__content">
           <div class="navbar__main">
-            <div class="navbar__logo logo">
-              <routerLink to="/">
-                <img src="../assets/blog.png" alt="logo">
-              </routerLink>
+            <div class="navbar__logo logo" @click="reloadPage">
+              <img src="../assets/blog.png" alt="logo">
             </div>
             <ul class="navbar__menu">
               <li class="navbar__menu-item">
@@ -23,7 +21,7 @@
           </div>
           <div class="navbar__login">
             <button type="button" class="navbar__login-btn">
-              Log in
+              <span>Log in</span>
             </button>
           </div>
           <!-- <div class="navbar__user"></div> -->
@@ -36,7 +34,12 @@
 <script lang='ts'>
 
 export default {
-  name: 'TheNavbar'
+  name: 'TheNavbar',
+  methods: {
+    reloadPage(): void {
+      location.reload()
+    }
+  }
 }
 
 </script>
@@ -56,6 +59,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0 15px;
   }
 
   &__logo {
@@ -94,12 +98,22 @@ export default {
     border: none;
     background-color: rgb(161, 193, 245);
     border-radius: 10px;
-    font-size: 15px;
-    font-weight: 500;
     cursor: pointer;
+    width: 80px;
+    transition: all 0.4s;
+    display: inline-flex;
+  }
+
+  &__login-btn span {
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    margin-left: 7px;
+    font-weight: 600;
+    font-size: 15px;
   }
 
   &__login-btn:hover {
+    width: 100px;
     background-color: rgb(91, 154, 255);
     color: white;
   }
