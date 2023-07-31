@@ -23,6 +23,7 @@
             <button type="button" class="navbar__login-btn">
               <span>Log in</span>
             </button>
+            <img class="navbar__login-exit" src="../assets/exit.png" />
           </div>
           <!-- <div class="navbar__user"></div> -->
         </div>
@@ -77,6 +78,7 @@ export default {
   }
 
   &__menu-item a {
+    transition: all 0.25s;
     text-decoration: none;
     color: black;
     font-weight: 500;
@@ -95,13 +97,21 @@ export default {
 
   &__login-btn {
     padding: 10px;
-    border: none;
-    background-color: rgb(161, 193, 245);
+    min-width: 80px;
     border-radius: 10px;
-    cursor: pointer;
-    width: 80px;
+    background-color: rgba(22, 107, 255, 0.547);
+    display: flex;
     transition: all 0.4s;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
     display: inline-flex;
+  }
+
+  &__login-btn:hover {
+    min-width: 100px;
+    background-color: rgb(91, 154, 255);
+    color: white;
   }
 
   &__login-btn span {
@@ -112,10 +122,9 @@ export default {
     font-size: 15px;
   }
 
-  &__login-btn:hover {
-    width: 100px;
-    background-color: rgb(91, 154, 255);
-    color: white;
+  &__login-exit {
+    width: 20px;
+    display: none;
   }
 }
 </style>
