@@ -10,7 +10,9 @@
             {{ mainPost.topTitle }}
           </div>
           <div class="header__info-title">
-            {{ mainPost.title }}
+            <router-link to="/post/:id">
+              {{ mainPost.title }}
+            </router-link>
           </div>
           <div class="header__info-p">
             {{ mainPost.paragraph }}
@@ -23,14 +25,6 @@
             <div class="header__tags-tag " v-if="mainPost.readTime !== ''">
               {{ mainPost.readTime }}
             </div>
-          </div>
-
-          <div class="header__hyperlink">
-            <span class="header__hyperlink-link">
-              <router-link to="/post/:id">
-                Watch post...
-              </router-link>
-            </span>
           </div>
         </div>
       </div>
@@ -136,6 +130,17 @@ export default {
     margin: 25px 0;
     font-size: 30px;
     font-weight: bold;
+    color: black;
+    transition: all 0.3s;
+  }
+
+  &__info-title a {
+    color: black;
+    transition: all 0.3s;
+  }
+
+  &__info-title a:hover {
+    color: rgba(65, 65, 195, 0.603);
   }
 
   &__info-p {
@@ -165,6 +170,11 @@ export default {
 
   &__tags-tag:first-child {
     margin-left: 0;
+  }
+
+  &__info-title a {
+    text-decoration: none;
+    color: black;
   }
 
   &__postinfo {
@@ -286,6 +296,17 @@ export default {
 @media (max-width: 980px) {
   .header__left {
     display: none;
+  }
+}
+
+@media (max-width: 570px) {
+  .header__post {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .post_rightside {
+    margin-top: 20px;
   }
 }
 </style>

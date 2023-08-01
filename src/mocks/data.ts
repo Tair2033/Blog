@@ -4,29 +4,38 @@ type social = {
   link: string
 }
 
-export interface MainPost {
+interface MainPost {
   topTitle: string
   title: string
   paragraph: string
   tags: Array<string> | string
   readTime: string
-  preview: string
+  preview?: string
   author: string
   publishDate: string
   socialLinks: Array<social>
 }
 
-export interface Post {
+interface Post {
   id: number
   title: string
   tags: Array<string> | string
   mainText: string
   readTime: string
-  preview: string
+  preview?: string
   author: string
   publishDate: string
+  likes: number
   socialLinks: Array<social>
   text: []
+}
+
+interface News {
+  id: number
+  title: string
+  text: string
+  publishDate: string
+  preview?: string
 }
 
 export const main: MainPost = {
@@ -58,9 +67,9 @@ export const posts: Array<Post> = [
   {
     id: 0,
     title: 'The Nature. The best places in the world',
-    tags: ['Design', 'Product', 'Tutorial'],
+    tags: ['Nature'],
     mainText:
-      'fsdfsdfdsfsdfsdfsdfsdfsdfsrtgrtgtrtvrvsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsfsdfsdfsdfsdfsdffgbfgbfgbsdfsdrvfgbfbfgbfgbfsdfsdfsdfsdfsdgtgtbrybrt',
+      'Forget crowded cities, tourist attractions, escape the crowds and seek out the most beautiful nature in the world. Although there is only a handful of official natural wonders across the globe, our planet is full of stunning scenery, breathtaking landscapes, and intriguing sights.',
     readTime: '10 min read',
     preview: 'nature.jpg',
     author: 'Alex Robinson',
@@ -77,6 +86,7 @@ export const posts: Array<Post> = [
         link: 'www.facebook.com'
       }
     ],
+    likes: 123,
     text: []
   },
   {
@@ -84,9 +94,8 @@ export const posts: Array<Post> = [
     title: 'So yammy potatoes!',
     tags: ['Food', 'Product', 'Tutorial'],
     mainText:
-      'fsdfsdfdsfsdfsdfsdfsdfsdfsrtgrtgtrtvrvsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsfsdfsdfsdfsdfsdffgbfgbfgbsdfsdrvfgbfbfgbfgbfsdfsdfsdfsdfsdgtgtbrybrt',
+      'Potatoes are thought to have been independently domesticated several times and were largely cultivated in South America by the Incas as early as 1,800 years ago. Encountered by the invading Spaniards, potatoes were introduced into Europe during the second half of the 16th century. By the end of the 17th century the plant was a major crop in Ireland, and by the end of the 18th century it was a major crop in continental Europe, particularly Germany, and in the west of England.',
     readTime: '14 min read',
-    preview: 'food.jpg',
     author: 'Alex Robinson',
     publishDate: '17 Jan 2022',
     socialLinks: [
@@ -101,6 +110,7 @@ export const posts: Array<Post> = [
         link: 'www.facebook.com'
       }
     ],
+    likes: 34,
     text: []
   },
   {
@@ -108,7 +118,7 @@ export const posts: Array<Post> = [
     title: 'The best wedding - 5 steps',
     tags: ['Design', 'Wedding', 'Tutorial'],
     mainText:
-      'fsdfsdfdsfsdfsdfsdfsdfsdfsrtgrtgtrtvrvsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsfsdfsdfsdfsdfsdffgbfgbfgbsdfsdrvfgbfbfgbfgbfsdfsdfsdfsdfsdgtgtbrybrt',
+      'Wearing things to events that seem to be made for a different occasion has not been a bad thing for a long time. Traditionally, caps, scarves, stoles and headbands do not belong to wedding paraphernalia. But how organically and stylishly they look in combination with a white brides dress! If you are also bored with classic images with a veil, pay attention to our selection of fashionable shawls and bandanas for brides.',
     readTime: '6 min read',
     preview: 'wedding.jpg',
     author: 'Alex Robinson',
@@ -125,6 +135,22 @@ export const posts: Array<Post> = [
         link: 'www.facebook.com'
       }
     ],
+    likes: 42,
     text: []
+  }
+]
+
+export const news: Array<News> = [
+  {
+    id: 0,
+    title: 'We are released!',
+    text: 'Drgrlgo moprmprmb oktrbop rtbkmkml mcsdop moisdop ooo.',
+    publishDate: '22.04.2023'
+  },
+  {
+    id: 1,
+    title: 'New possibilities',
+    text: 'Try it yourself.',
+    publishDate: '30.05.2023'
   }
 ]

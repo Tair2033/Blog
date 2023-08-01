@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/HomeView.vue'
 import Popular from '../views/PopularView.vue'
+import PostView from '../views/PostView.vue'
+import NewPostsView from '../views/NewPostsView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -15,8 +17,13 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/new-posts',
-    name: 'Home',
-    component: Popular
+    name: 'New',
+    component: NewPostsView
+  },
+  {
+    path: '/post/:id',
+    name: 'PostView',
+    component: PostView
   }
 ]
 

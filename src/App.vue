@@ -32,4 +32,20 @@ body {
   max-width: 1300px;
   margin: 0 auto;
 }
+
+// Adapt
+
+@media (min-width: 1980px) {
+  .container {
+    max-width: 1850px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1760px) {
+  .container {
+    max-width: 1450px;
+    margin: 0 auto;
+  }
+}
 </style>

@@ -5,10 +5,26 @@
         <div class="infoblocks__content">
 
           <div class="infoblocks__posts">
-            <AppPost v-for="post in posts" :post="post" :key="post.id" />
+            <div class="infoblocks__title">
+              Fresh Posts
+            </div>
+
+            <AppPost v-for="(post, index) in posts" :post="post" :key="index" />
+
+            <div class="infoblocks__redirect">
+              <router-link to="/new-posts">
+                Watch more fresh posts...
+              </router-link>
+            </div>
           </div>
 
-          <div class="infoblocks__news">asdas</div>
+          <div class="infoblocks__news">
+            <AppNews v-for="section in news" :news="section" :key="section.id" />
+
+            <div class="infoblocks__news-subscribe">
+              <AppNews :news="subscribe" :subscribe="subscribe" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -16,12 +32,21 @@
 </template>
 
 <script lang='ts'>
+import AppNews from '../AppNews.vue'
 import AppPost from '../AppPost.vue'
 
 export default {
   name: 'TheHomePosts',
-  props: ['posts'],
-  components: { AppPost }
+  data: () => {
+    return {
+      subscribe: {
+        title: 'Weekly newsletter',
+        text: 'No spam. Just the latest releases and tips, interesting artiles, and exclusive interviews in your inbox every week.'
+      }
+    }
+  },
+  props: ['posts', 'news'],
+  components: { AppPost, AppNews }
 }
 
 </script>
@@ -30,18 +55,55 @@ export default {
 .infoblocks {
   padding: 20px;
 
-  &__body {}
-
-  &__container {}
+  &__title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+    margin-left: 20px;
+    cursor: default;
+    user-select: none;
+  }
 
   &__content {
     display: flex;
+    justify-content: space-between;
   }
 
-  &__posts {}
+  &__redirect {
+    cursor: pointer;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  &__redirect a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid white;
+    transition: all 0.3s;
+  }
+
+  &__redirect a:hover {
+    color: blue;
+    border-bottom: 1px solid blue;
+  }
 
   &__news {
-    width: 300px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .infoblocks__content {
+    flex-direction: column;
+  }
+
+  .infoblocks__news {
+    width: 100%;
+  }
+
+  .postblock {
+    margin-right: 0;
   }
 }
 </style>
