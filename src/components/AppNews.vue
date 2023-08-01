@@ -12,6 +12,12 @@
       </div>
 
       <div class="news__subscribe" v-if="subscribe">
+        <div class="news__subscribe-title">
+          {{ subscribe?.title }}
+        </div>
+        <div class="news__subscribe-p">
+          {{ subscribe?.text }}
+        </div>
         <div class="news__subscribe-input">
           <input type="email">
         </div>
@@ -66,6 +72,21 @@ export default {
     margin-top: 10px;
   }
 
+  &__subscribe-title {
+    color: rgb(16, 16, 91);
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  &__subscribe-p {
+    font-size: 15px;
+    word-break: break-all;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
   &__subscribe {
     margin-top: 20px;
   }
@@ -97,8 +118,13 @@ export default {
     width: 100%;
     padding: 10px;
     border-radius: 7px;
-    background-color: rgb(16, 9, 93);
+    background-color: rgb(14, 8, 78);
     color: white;
+    transition: all 0.3s;
+  }
+
+  &__subscribe-button button:hover {
+    background-color: rgb(37, 27, 153);
   }
 }
 </style>

@@ -19,10 +19,14 @@
           </div>
 
           <div class="infoblocks__news">
+            <div class="infoblocks__news-title">
+              News
+            </div>
+
             <AppNews v-for="section in news" :news="section" :key="section.id" />
 
             <div class="infoblocks__news-subscribe">
-              <AppNews :news="subscribe" :subscribe="subscribe" />
+              <AppNews :subscribe="subscribe" />
             </div>
           </div>
         </div>
@@ -60,6 +64,16 @@ export default {
     margin-bottom: 20px;
     text-decoration: underline;
     margin-left: 20px;
+    cursor: default;
+    user-select: none;
+  }
+
+  &__news-title {
+    text-align: start;
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin-left: 12px;
+    font-weight: 600;
     cursor: default;
     user-select: none;
   }
