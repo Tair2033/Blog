@@ -83,7 +83,7 @@ export default {
     margin-top: 10px;
     font-size: 17px;
     padding-bottom: 20px;
-    max-width: 900px;
+    min-width: 900px;
     word-wrap: break-word;
     line-height: 1.7;
     color: rgba(0, 0, 0, 0.646);
@@ -123,15 +123,20 @@ export default {
   &__preview {
     border-radius: 15px;
     z-index: 10;
-    max-width: 900px;
+    min-width: 900px;
     max-height: 450px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__preview img {
     z-index: 10;
     max-width: 100%;
+    filter: brightness(87%);
     object-fit: cover;
+    transition: all 0.4s;
   }
 
   &__tags {
@@ -153,6 +158,12 @@ export default {
     margin-left: 10px;
     border-radius: 10px;
     cursor: default;
+  }
+}
+
+.postblock:hover {
+  .postblock__preview img {
+    filter: brightness(100%);
   }
 }
 
