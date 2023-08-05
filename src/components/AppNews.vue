@@ -22,7 +22,7 @@
           <input type="email">
         </div>
         <div class="news__subscribe-button">
-          <button type="button">Subscribe</button>
+          <button @click="changeNotif" type="button">Subscribe</button>
         </div>
       </div>
     </div>
@@ -30,10 +30,17 @@
 </template>
 
 <script lang='ts'>
+import store from '@/store'
 
 export default {
   name: 'AppNews',
-  props: ['news', 'subscribe']
+  props: ['news', 'subscribe'],
+  methods: {
+    changeNotif() {
+      store.dispatch('changeNotifType', 'success')
+      store.dispatch('changeNotifText', 'You have been subscribed!')
+    }
+  }
 }
 
 </script>

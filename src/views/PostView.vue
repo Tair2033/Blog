@@ -13,7 +13,8 @@
 <script lang='ts'>
 
 export default {
-  name: 'PostView'
+  name: 'PostView',
+  methods: {}
 }
 
 </script>

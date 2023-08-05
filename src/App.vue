@@ -1,16 +1,27 @@
 <template>
   <div class="app">
     <TheNavbar />
+    <AppNotification :text="getNotifText" :type="getNotifType" />
     <router-view />
   </div>
 </template>
 
 <script lang='ts'>
+import AppNotification from './components/AppNotification.vue'
 import TheNavbar from './components/TheNavbar.vue'
+import store from './store'
 
 export default {
   name: 'App',
-  components: { TheNavbar }
+  components: { TheNavbar, AppNotification },
+  computed: {
+    getNotifText(): string {
+      return store.getters.getNotifText
+    },
+    getNotifType(): string {
+      return store.getters.getNotifType
+    }
+  }
 }
 
 </script>
@@ -26,6 +37,10 @@ export default {
 
 body {
   font-family: 'Montserrat', sans-serif;
+}
+
+.app {
+  position: relative;
 }
 
 .container {

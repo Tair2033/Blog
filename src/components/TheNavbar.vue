@@ -82,6 +82,7 @@ export default {
     text-decoration: none;
     color: black;
     font-weight: 500;
+    font-size: calc(16px + 4 * (100vw / 1400));
     height: 100%;
     padding-left: 10px;
     padding-right: 10px;
@@ -119,7 +120,7 @@ export default {
     display: block;
     margin-left: 7px;
     font-weight: 600;
-    font-size: 15px;
+    font-size: calc(14px + 2 * (100vw / 1400));
   }
 
   &__login-exit {
