@@ -103,7 +103,7 @@ export default {
   }
 
   &__news {
-    min-width: 300px;
+    max-width: 300px;
   }
 }
 

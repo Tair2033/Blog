@@ -10,7 +10,7 @@
             {{ mainPost.topTitle }}
           </div>
           <div class="header__info-title">
-            <router-link to="/post/:id">
+            <router-link :to="'/post/' + mainPost.id">
               {{ mainPost.title }}
             </router-link>
           </div>

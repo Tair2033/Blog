@@ -8,14 +8,10 @@
               <img src="../assets/blog.png" alt="logo">
             </div>
             <ul class="navbar__menu">
-              <li class="navbar__menu-item">
-                <routerLink to="/">Home</routerLink>
-              </li>
-              <li class="navbar__menu-item">
-                <routerLink to="/popular">Popular</routerLink>
-              </li>
-              <li class="navbar__menu-item">
-                <routerLink to="/new-posts">Last Posts</routerLink>
+              <li class="navbar__menu-item" @click="updateLoaders" v-for="(item, index) in navbarItems" :key="index">
+                <routerLink :to="item">
+                  {{ index }}
+                </routerLink>
               </li>
             </ul>
           </div>
@@ -33,19 +29,40 @@
 </template>
 
 <script lang='ts'>
+import store from '@/store'
 
 export default {
   name: 'TheNavbar',
+  data: () => {
+    return {
+      navbarItems: {
+        Home: '/',
+        Popular: '/popular',
+        'Last Posts': '/new-posts'
+      }
+    }
+  },
   methods: {
     reloadPage(): void {
       location.reload()
+    },
+    updateLoaders() {
+      store.dispatch('updateAllLoaders')
     }
   }
 }
 
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
+a {
+  color: rgba(0, 0, 0, 0.891);
+}
+
+.active-link {
+  color: rgba(43, 60, 217, 0.802);
+}
+
 .navbar {
 
   &__body {
@@ -80,7 +97,6 @@ export default {
   &__menu-item a {
     transition: all 0.25s;
     text-decoration: none;
-    color: black;
     font-weight: 500;
     font-size: calc(16px + 4 * (100vw / 1400));
     height: 100%;
@@ -89,7 +105,7 @@ export default {
   }
 
   &__menu-item a:hover {
-    color: rgba(0, 0, 0, 0.365);
+    color: rgba(43, 60, 217, 0.802);
   }
 
   &__user {

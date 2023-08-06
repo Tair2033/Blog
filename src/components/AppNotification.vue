@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="notif notif__danger" v-if="notifType === 'danger'">
-      <h3>
+      <h3 class="text">
         {{ text }}
       </h3>
     </div>
@@ -33,7 +33,7 @@ export default {
 
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 .notif {
   z-index: 20;
   transition: top, right 0.5s;
@@ -51,6 +51,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: -4px 7px 29px 3px rgba(34, 60, 80, 0.322);
 }
 
 .notif__danger {
@@ -58,6 +59,6 @@ export default {
 }
 
 .notif__success {
-  background-color: rgba(56, 207, 56, 0.533);
+  background-color: rgb(131, 241, 131);
 }
 </style>

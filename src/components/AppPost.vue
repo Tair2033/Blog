@@ -1,15 +1,15 @@
 <template>
-  <div class="postblock">
+  <div class="postblock" @click="updateLoaders">
     <div class="postblock__body">
       <div class="postblock__container">
         <div class="postblock__title">
-          <router-link to="/post/:id">
+          <router-link :to="'/post/' + post.id">
             {{ post.title }}
           </router-link>
         </div>
         <div class="postblock__p" @click="isOpenP = !isOpenP">
           <p v-if="!isOpenP">
-            {{ post.mainText.slice(0, 200) }}.....
+            {{ post.paragraph.slice(0, 200) }}.....
           </p>
           <div class="postblock__p-hide" v-if="!isOpenP">
             <div v-if="post.preview"></div>
@@ -20,14 +20,30 @@
           </p>
         </div>
         <div class="postblock__preview" v-if="post.preview">
-          <router-link to="/post/:id">
-            <img :src="require(`../assets/${post.preview}`)" alt="">
+          <router-link class="postblock__preview-a" :to="'/post/' + post.id">
+            <img :src="`${post.preview}`" alt="">
           </router-link>
         </div>
-        <div class="postblock__tags">
-          <span>Tags:</span>
-          <div class="postblock__tags-tag" v-for="tag in post.tags" :key="tag">
-            {{ tag }}
+        <div class="postblock__bottom">
+          <div class="postblock__tags">
+            <span>Tags:</span>
+            <div class="postblock__tags-tag" v-for=" tag  in  post.tags " :key="tag">
+              {{ tag }}
+            </div>
+          </div>
+          <div class="postblock__stats">
+            <div class="postblock__stats-like">
+              <img src="../assets/like-1.svg" alt="">
+            </div>
+            <div class="postblock__stats-dis">
+              <img src="../assets/like-1.svg" alt="">
+            </div>
+            <div class="postblock__stats-date">
+              {{ post.publishDate }}
+            </div>
+            <div class="postblock__stats-author">
+              {{ post.author }}
+            </div>
           </div>
         </div>
       </div>
@@ -36,6 +52,7 @@
 </template>
 
 <script lang='ts'>
+import store from '@/store'
 
 export default {
   name: 'AppPost',
@@ -44,14 +61,19 @@ export default {
       isOpenP: false
     }
   },
-  props: ['post', 'id']
+  props: ['post', 'id'],
+  methods: {
+    updateLoaders() {
+      store.dispatch('updateAllLoaders')
+    }
+  }
 }
 
 </script>
 
 <style lang='scss' scoped>
 .postblock {
-  padding: 20px;
+  padding: 24px;
   border-radius: 30px;
   transition: all 0.3s;
   background-color: white;
@@ -59,6 +81,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.097);
   margin-right: 20px;
   position: relative;
+  max-width: 1400px;
 
   &__body {
     cursor: default;
@@ -83,7 +106,6 @@ export default {
     margin-top: 10px;
     font-size: 17px;
     padding-bottom: 20px;
-    min-width: 900px;
     word-wrap: break-word;
     line-height: 1.7;
     color: rgba(0, 0, 0, 0.646);
@@ -92,12 +114,12 @@ export default {
   &__p-hide {
     display: flex;
     justify-content: center;
-    cursor: pointer;
     position: absolute;
     height: 70px;
     width: 97%;
     top: 120px;
     z-index: -1;
+    cursor: pointer;
   }
 
   &__p-hide div {
@@ -113,6 +135,7 @@ export default {
   }
 
   &__p-hide img {
+    cursor: pointer;
     z-index: 6;
     position: absolute;
     left: 47%;
@@ -120,18 +143,18 @@ export default {
     opacity: 0.4;
   }
 
-  &__preview {
+  &__preview-a {
     border-radius: 15px;
     z-index: 10;
-    min-width: 900px;
-    max-height: 450px;
+    width: auto;
+    min-height: 450px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  &__preview img {
+  &__preview-a img {
     z-index: 10;
     max-width: 100%;
     filter: brightness(87%);
@@ -139,10 +162,16 @@ export default {
     transition: all 0.4s;
   }
 
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
   &__tags {
     display: flex;
     align-items: center;
-    margin-top: 20px;
   }
 
   &__tags span {
@@ -159,6 +188,41 @@ export default {
     border-radius: 10px;
     cursor: default;
   }
+
+  &__stats {
+    display: flex;
+    align-items: center;
+  }
+
+  &__stats-like {
+    width: 25px;
+    margin-right: 15px;
+  }
+
+  &__stats-like img:hover {
+    fill: red;
+    cursor: pointer;
+  }
+
+  &__stats-dis {
+    width: 25px;
+    margin-right: 20px;
+    transform: rotateX(180deg);
+  }
+
+  &__stats-dis img {
+    cursor: pointer;
+    margin-top: 7px;
+  }
+
+  &__stats-author {
+    font-weight: 600;
+    font-size: 17px;
+  }
+
+  &__stats-date {
+    margin-right: 20px;
+  }
 }
 
 .postblock:hover {
@@ -168,6 +232,15 @@ export default {
 }
 
 //Adapt
+@media (max-width: 1150px) {
+  .postblock__bottom {
+    flex-direction: column;
+  }
+
+  .postblock__tags {
+    margin-bottom: 20px;
+  }
+}
 
 @media (max-width: 900px) {
   .postblock__p-hide img {
@@ -181,6 +254,7 @@ export default {
   }
 
   .postblock__p-hide {
+    cursor: pointer;
     top: 160px;
   }
 }
