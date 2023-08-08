@@ -1,10 +1,15 @@
 <template>
-  <div class="home">
-    <div class="home__body">
-      <div class="container">
-        <div class="home__content">
-          <TheHeaderPost :mainPost="mainPost" />
-          <TheHomePosts :posts="posts" :news="news" />
+  <div class="wrapper">
+    <div class="wrapper__loader" v-if="changeHomeLoadingStatus">
+      <AppLoader />
+    </div>
+    <div class="home" v-if="!changeHomeLoadingStatus">
+      <div class="home__body">
+        <div class="container">
+          <div class="home__content">
+            <TheHeaderPost :mainPost="mainPost" />
+            <TheHomePosts :posts="posts" :news="news" />
+          </div>
         </div>
       </div>
     </div>
@@ -14,7 +19,9 @@
 <script lang="ts">
 import TheHeaderPost from '@/components/homepage/TheHeaderPost.vue'
 import TheHomePosts from '@/components/homepage/TheHomePosts.vue'
+import store from '@/store'
 import { main, posts, news } from '../mocks/data'
+import AppLoader from '@/components/AppLoader.vue'
 
 export default {
   name: 'HomeView',
@@ -25,12 +32,29 @@ export default {
       news
     }
   },
-  components: { TheHeaderPost, TheHomePosts }
+  beforeMount() {
+    const timeout = setTimeout(() => {
+      store.dispatch('changeHomeLoadingStatus')
+      clearTimeout(timeout)
+    }, 1000)
+  },
+  computed: {
+    changeHomeLoadingStatus() {
+      return store.getters.isLoadingHome
+    }
+  },
+  components: { TheHeaderPost, TheHomePosts, AppLoader }
 }
 
 </script>
 <style lang="scss" scoped>
 .home {
   padding-top: 20px;
+}
+
+.wrapper__loader {
+  display: flex;
+  justify-content: center;
+  padding-top: 220px;
 }
 </style>

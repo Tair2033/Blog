@@ -1,8 +1,8 @@
 <template>
-  <div class="postblock" @click="updateLoaders">
+  <div class="postblock">
     <div class="postblock__body">
       <div class="postblock__container">
-        <div class="postblock__title">
+        <div class="postblock__title" @click="updateLoaders">
           <router-link :to="'/post/' + post.id">
             {{ post.title }}
           </router-link>
@@ -16,10 +16,10 @@
             <img src="../assets/down-arrow.png" alt="">
           </div>
           <p v-if="isOpenP">
-            {{ post.mainText }}
+            {{ post.paragraph }}
           </p>
         </div>
-        <div class="postblock__preview" v-if="post.preview">
+        <div class="postblock__preview" @click="updateLoaders" v-if="post.preview">
           <router-link class="postblock__preview-a" :to="'/post/' + post.id">
             <img :src="`${post.preview}`" alt="">
           </router-link>
@@ -27,16 +27,16 @@
         <div class="postblock__bottom">
           <div class="postblock__tags">
             <span>Tags:</span>
-            <div class="postblock__tags-tag" v-for=" tag  in  post.tags " :key="tag">
+            <div class="postblock__tags-tag" v-for="tag  in  post.tags " :key="tag">
               {{ tag }}
             </div>
           </div>
           <div class="postblock__stats">
-            <div class="postblock__stats-like">
-              <img src="../assets/like-1.svg" alt="">
+            <div class="postblock__stats-like" @click="isLiked = !isLiked, isDisliked = false">
+              <AppLike type="like" :status="isLiked" />
             </div>
-            <div class="postblock__stats-dis">
-              <img src="../assets/like-1.svg" alt="">
+            <div class="postblock__stats-dis" @click="isDisliked = !isDisliked, isLiked = false">
+              <AppLike type="dislike" :status="isDisliked" />
             </div>
             <div class="postblock__stats-date">
               {{ post.publishDate }}
@@ -53,12 +53,15 @@
 
 <script lang='ts'>
 import store from '@/store'
+import AppLike from './AppLike.vue'
 
 export default {
   name: 'AppPost',
   data: () => {
     return {
-      isOpenP: false
+      isOpenP: false,
+      isLiked: false,
+      isDisliked: false
     }
   },
   props: ['post', 'id'],
@@ -66,7 +69,8 @@ export default {
     updateLoaders() {
       store.dispatch('updateAllLoaders')
     }
-  }
+  },
+  components: { AppLike }
 }
 
 </script>
@@ -182,10 +186,10 @@ export default {
   &__tags-tag {
     background-color: white;
     font-weight: 500;
-    padding: 7px;
-    border: 2px solid;
+    padding: 8px;
+    border: 2px solid black;
     margin-left: 10px;
-    border-radius: 10px;
+    border-radius: 20px;
     cursor: default;
   }
 
@@ -207,7 +211,6 @@ export default {
   &__stats-dis {
     width: 25px;
     margin-right: 20px;
-    transform: rotateX(180deg);
   }
 
   &__stats-dis img {

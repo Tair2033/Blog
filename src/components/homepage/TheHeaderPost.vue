@@ -31,7 +31,7 @@
 
       <div class="header__postinfo">
         <div class="header__preview">
-          <img src="../../assets/cards.jpg" alt="">
+          <img :src="mainPost.preview" alt="">
         </div>
 
         <div class="header__post post">

@@ -15,6 +15,7 @@ export interface MainPost {
   author: string
   publishDate: string
   socialLinks: Array<social>
+  content: Array<object>
 }
 
 export interface Post {
@@ -28,7 +29,7 @@ export interface Post {
   publishDate: string
   likes: number
   socialLinks: Array<social>
-  text: []
+  content: Array<object>
 }
 
 interface News {
@@ -39,6 +40,14 @@ interface News {
   preview?: string
 }
 
+type sectionType =
+  | 'text'
+  | 'header1'
+  | 'header2'
+  | 'header3'
+  | 'quote'
+  | 'image'
+
 export const main: MainPost = {
   id: 2434,
   topTitle: 'Product Design',
@@ -48,7 +57,8 @@ export const main: MainPost = {
     'a good first impression about you. I will tell you about the features of a quality product and understand in detail how to make a business card layout yourself through various popular programs.',
   tags: ['Design', 'Product', 'Tutorial'],
   readTime: '10 min read',
-  preview: 'cards.jpg',
+  preview:
+    'https://2.bp.blogspot.com/-iW3LNnEYYto/WJDbF9IKkuI/AAAAAAAAAU4/TP3p3sJL_ZEBf4jYX-W37dS5pTRypmRhgCLcB/s1600/business-card-mockups.jpg',
   author: 'Alex Robinson',
   publishDate: '17 Jan 2020',
   socialLinks: [
@@ -61,6 +71,44 @@ export const main: MainPost = {
       id: 1,
       icon: 'vk.png',
       link: 'www.facebook.com'
+    }
+  ],
+  content: [
+    {
+      id: 0,
+      sectionType: 'text',
+      text: 'These business multi-tools fulfill many of the professional basic needs: advertising, brand recognition, call-to-action, and of course contact information. When designed right, these pocket-sized billboards can leave a lasting impression and create life-long customers from passing strangers.'
+    },
+    {
+      id: 1,
+      sectionType: 'quote',
+      quoteAuthor: 'Andrey Jackson',
+      text: 'American Psycho has taught us nothing else, it’s the importance of business cards.'
+    },
+    {
+      id: 2,
+      sectionType: 'text',
+      text: 'Logos and color schemes are the two most important visual choices for branding. Not only will these elements play a big part in creating your business card, they’ll also help influence other areas like layout and identity.'
+    },
+    {
+      id: 3,
+      sectionType: 'text',
+      text: 'There’s one other preliminary activity that makes the rest of the business card design process run more smoothly. You need to know what you want to communicate. What kind of brand are you, as an individual or business? What do you want your business card to say, not just with words, but with the design?'
+    },
+    {
+      id: 4,
+      sectionType: 'text',
+      text: 'What your business card actually says depends on you. Work-from-home freelancers may have no need for a postal address, while professions that consult face-to-face require it. Or maybe it’s a strategic choice, such as drawing attention to your impressive social media following. The point is, different people benefit from different text on their business cards.'
+    },
+    {
+      id: 5,
+      sectionType: 'text',
+      text: 'So the next step is for you to decide what to put on your business card. Below is a list of some common choices, so you can decide which to include and exclude.'
+    },
+    {
+      id: 6,
+      sectionType: 'image',
+      link: 'https://99designs-blog.imgix.net/blog/wp-content/uploads/2018/04/Screen-Shot-2018-04-12-at-6.06.12-PM.png?auto=format&q=60&fit=max&w=930'
     }
   ]
 }
@@ -90,7 +138,44 @@ export const posts: Array<Post> = [
       }
     ],
     likes: 123,
-    text: []
+    content: [
+      {
+        id: 0,
+        sectionType: 'text',
+        text: 'These business multi-tools fulfill many of the professional basic needs: advertising, brand recognition, call-to-action, and of course contact information. When designed right, these pocket-sized billboards can leave a lasting impression and create life-long customers from passing strangers.'
+      },
+      {
+        id: 1,
+        sectionType: 'quote',
+        quoteAuthor: 'Andrey Jackson',
+        text: 'American Psycho has taught us nothing else, it’s the importance of business cards.'
+      },
+      {
+        id: 2,
+        sectionType: 'text',
+        text: 'Logos and color schemes are the two most important visual choices for branding. Not only will these elements play a big part in creating your business card, they’ll also help influence other areas like layout and identity.'
+      },
+      {
+        id: 3,
+        sectionType: 'text',
+        text: 'There’s one other preliminary activity that makes the rest of the business card design process run more smoothly. You need to know what you want to communicate. What kind of brand are you, as an individual or business? What do you want your business card to say, not just with words, but with the design?'
+      },
+      {
+        id: 4,
+        sectionType: 'text',
+        text: 'What your business card actually says depends on you. Work-from-home freelancers may have no need for a postal address, while professions that consult face-to-face require it. Or maybe it’s a strategic choice, such as drawing attention to your impressive social media following. The point is, different people benefit from different text on their business cards.'
+      },
+      {
+        id: 5,
+        sectionType: 'text',
+        text: 'So the next step is for you to decide what to put on your business card. Below is a list of some common choices, so you can decide which to include and exclude.'
+      },
+      {
+        id: 6,
+        sectionType: 'image',
+        link: 'https://99designs-blog.imgix.net/blog/wp-content/uploads/2018/04/Screen-Shot-2018-04-12-at-6.06.12-PM.png?auto=format&q=60&fit=max&w=930'
+      }
+    ]
   },
   {
     id: 7673,
@@ -114,7 +199,44 @@ export const posts: Array<Post> = [
       }
     ],
     likes: 34,
-    text: []
+    content: [
+      {
+        id: 0,
+        sectionType: 'text',
+        text: 'These business multi-tools fulfill many of the professional basic needs: advertising, brand recognition, call-to-action, and of course contact information. When designed right, these pocket-sized billboards can leave a lasting impression and create life-long customers from passing strangers.'
+      },
+      {
+        id: 1,
+        sectionType: 'quote',
+        quoteAuthor: 'Andrey Jackson',
+        text: 'American Psycho has taught us nothing else, it’s the importance of business cards.'
+      },
+      {
+        id: 2,
+        sectionType: 'text',
+        text: 'Logos and color schemes are the two most important visual choices for branding. Not only will these elements play a big part in creating your business card, they’ll also help influence other areas like layout and identity.'
+      },
+      {
+        id: 3,
+        sectionType: 'text',
+        text: 'There’s one other preliminary activity that makes the rest of the business card design process run more smoothly. You need to know what you want to communicate. What kind of brand are you, as an individual or business? What do you want your business card to say, not just with words, but with the design?'
+      },
+      {
+        id: 4,
+        sectionType: 'text',
+        text: 'What your business card actually says depends on you. Work-from-home freelancers may have no need for a postal address, while professions that consult face-to-face require it. Or maybe it’s a strategic choice, such as drawing attention to your impressive social media following. The point is, different people benefit from different text on their business cards.'
+      },
+      {
+        id: 5,
+        sectionType: 'text',
+        text: 'So the next step is for you to decide what to put on your business card. Below is a list of some common choices, so you can decide which to include and exclude.'
+      },
+      {
+        id: 6,
+        sectionType: 'image',
+        link: 'https://99designs-blog.imgix.net/blog/wp-content/uploads/2018/04/Screen-Shot-2018-04-12-at-6.06.12-PM.png?auto=format&q=60&fit=max&w=930'
+      }
+    ]
   },
   {
     id: 12466,
@@ -140,7 +262,44 @@ export const posts: Array<Post> = [
       }
     ],
     likes: 42,
-    text: []
+    content: [
+      {
+        id: 0,
+        sectionType: 'text',
+        text: 'These business multi-tools fulfill many of the professional basic needs: advertising, brand recognition, call-to-action, and of course contact information. When designed right, these pocket-sized billboards can leave a lasting impression and create life-long customers from passing strangers.'
+      },
+      {
+        id: 1,
+        sectionType: 'quote',
+        quoteAuthor: 'Andrey Jackson',
+        text: 'American Psycho has taught us nothing else, it’s the importance of business cards.'
+      },
+      {
+        id: 2,
+        sectionType: 'text',
+        text: 'Logos and color schemes are the two most important visual choices for branding. Not only will these elements play a big part in creating your business card, they’ll also help influence other areas like layout and identity.'
+      },
+      {
+        id: 3,
+        sectionType: 'text',
+        text: 'There’s one other preliminary activity that makes the rest of the business card design process run more smoothly. You need to know what you want to communicate. What kind of brand are you, as an individual or business? What do you want your business card to say, not just with words, but with the design?'
+      },
+      {
+        id: 4,
+        sectionType: 'text',
+        text: 'What your business card actually says depends on you. Work-from-home freelancers may have no need for a postal address, while professions that consult face-to-face require it. Or maybe it’s a strategic choice, such as drawing attention to your impressive social media following. The point is, different people benefit from different text on their business cards.'
+      },
+      {
+        id: 5,
+        sectionType: 'text',
+        text: 'So the next step is for you to decide what to put on your business card. Below is a list of some common choices, so you can decide which to include and exclude.'
+      },
+      {
+        id: 6,
+        sectionType: 'image',
+        link: 'https://99designs-blog.imgix.net/blog/wp-content/uploads/2018/04/Screen-Shot-2018-04-12-at-6.06.12-PM.png?auto=format&q=60&fit=max&w=930'
+      }
+    ]
   }
 ]
 

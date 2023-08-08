@@ -1,20 +1,27 @@
 <template>
-  <div class="app">
+  <div class="app" :class="{ 'modal-active': isModal }">
     <TheNavbar />
+    <AppModal v-if="!isModal" />
     <AppNotification :text="getNotifText" :type="getNotifType" />
     <router-view />
+    <TheFooter />
   </div>
 </template>
 
 <script lang='ts'>
+import AppModal from './components/AppModal.vue'
 import AppNotification from './components/AppNotification.vue'
+import TheFooter from './components/TheFooter.vue'
 import TheNavbar from './components/TheNavbar.vue'
 import store from './store'
 
 export default {
   name: 'App',
-  components: { TheNavbar, AppNotification },
+  components: { TheNavbar, AppNotification, TheFooter, AppModal },
   computed: {
+    isModal() {
+      return store.getters.isModalActive
+    },
     getNotifText(): string {
       return store.getters.getNotifText
     },
@@ -46,6 +53,16 @@ body {
 .container {
   max-width: 1300px;
   margin: 0 auto;
+}
+
+.default-post-text {
+  font-size: 20px;
+  line-height: 1.7;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.modal-active {
+  // overflow: hidden;
 }
 
 // Adapt

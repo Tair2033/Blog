@@ -1,10 +1,15 @@
 import { createStore } from 'vuex'
 
 interface State {
+  isLogin: boolean
+  isModalActive: boolean
   notification: {
     text: string
     type: string
     isActive: boolean
+  }
+  home: {
+    isLoadingHome: boolean
   }
   popular: {
     isLoading: boolean
@@ -19,10 +24,15 @@ interface State {
 
 export default createStore<State>({
   state: {
+    isLogin: false,
+    isModalActive: true,
     notification: {
       text: 'Hello World',
       type: 'Default',
       isActive: false
+    },
+    home: {
+      isLoadingHome: true
     },
     popular: {
       isLoading: true
@@ -35,6 +45,12 @@ export default createStore<State>({
     }
   },
   getters: {
+    isModal(state) {
+      return state.isModalActive
+    },
+    isLoadingHome(state) {
+      return state.home.isLoadingHome
+    },
     isLoadingPost(state) {
       return state.post.isLoadingPost
     },
@@ -44,8 +60,8 @@ export default createStore<State>({
     isLoadingNew(state) {
       return state.newPosts.isLoadingNew
     },
-    getNotifType(state): string {
-      return state.notification.type
+    getNotificationStatus(state) {
+      return state.notification.isActive
     },
     getNotifText(state): string {
       return state.notification.text
@@ -56,12 +72,16 @@ export default createStore<State>({
       state.popular.isLoading = true
       state.newPosts.isLoadingNew = true
       state.post.isLoadingPost = true
-    },
-    changeNotifType(state, type: string) {
-      state.notification.type = type
+      state.home.isLoadingHome = true
     },
     changeNotifText(state, text: string) {
       state.notification.text = text
+    },
+    changeNotifStatus(state) {
+      state.notification.isActive = true
+    },
+    changeHomeLoadingStatus(state) {
+      state.home.isLoadingHome = false
     },
     changePopularLoadingStatus(state) {
       state.popular.isLoading = false
@@ -74,11 +94,11 @@ export default createStore<State>({
     }
   },
   actions: {
-    changeNotifType(context, type): void {
-      context.commit('changeNotifType', type)
-    },
     changeNotifText(context, text) {
       context.commit('changeNotifText', text)
+    },
+    changeNotifStatus(context) {
+      context.commit('changeNotifStatus')
     },
     changePopularLoadingStatus(context) {
       context.commit('changePopularLoadingStatus')
@@ -88,6 +108,9 @@ export default createStore<State>({
     },
     changePostLoadingStatus(context) {
       context.commit('changePostLoadingStatus')
+    },
+    changeHomeLoadingStatus(context) {
+      context.commit('changeHomeLoadingStatus')
     },
     updateAllLoaders(context) {
       context.commit('updateAllLoaders')

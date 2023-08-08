@@ -1,11 +1,6 @@
 <template>
   <div>
-    <div class="notif notif__danger" v-if="notifType === 'danger'">
-      <h3 class="text">
-        {{ text }}
-      </h3>
-    </div>
-    <div class="notif notif__success active" v-if="notifType === 'success'">
+    <div class="notif" v-if="notifType">
       <h3>
         {{ text }}
       </h3>
@@ -26,7 +21,7 @@ export default {
   },
   computed: {
     notifType(): string {
-      return store.getters.getNotifType
+      return store.getters.getNotificationStatus
     }
   }
 }
@@ -35,7 +30,9 @@ export default {
 
 <style lang='scss' scoped>
 .notif {
+  background-color: rgba(0, 0, 0, 0.644);
   z-index: 20;
+  color: white;
   transition: top, right 0.5s;
   user-select: none;
   cursor: default;
@@ -43,22 +40,14 @@ export default {
   top: 20px;
   right: 30px;
   min-width: 100px;
-  max-height: 50px;
+  max-height: 40px;
   border-radius: 10px;
   font-size: 20px;
   font-weight: 500;
-  padding: 40px 25px;
+  padding: 30px 25px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: -4px 7px 29px 3px rgba(34, 60, 80, 0.322);
-}
-
-.notif__danger {
-  background-color: rgba(249, 32, 32, 0.501);
-}
-
-.notif__success {
-  background-color: rgb(131, 241, 131);
 }
 </style>

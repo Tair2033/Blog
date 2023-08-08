@@ -8,26 +8,43 @@
         <div class="container">
           <div class="content__top">
             <div class="content__title">
-              {{ getPost?.title }}
+              {{ post?.title }}
             </div>
             <div class="content__p">
-              {{ getPost?.paragraph }}
+              {{ post?.paragraph }}
             </div>
-            <div class="content__tags">
-              <div class="content__tags-title">
-                Tags:
+            <div class="content__preview-top">
+              <div class=" content__tags">
+                <div class="content__tags-title">
+                  Tags:
+                </div>
+                <div class="content__tags-tag" v-for="tag in post?.tags" :key="tag">
+                  {{ tag }}
+                </div>
               </div>
-              <div class="content__tags-tag" v-for="tag in getPost?.tags" :key="tag">
-                {{ tag }}
+
+              <div class="content__info">
+                <div class="content__info-date">
+                  {{ post?.publishDate }}
+                </div>
+                <div class="content__info-author">
+                  {{ post?.author }}
+                </div>
               </div>
             </div>
             <div class="content__preview">
-              <img :src="getPost?.preview" alt="">
+              <img :src="post?.preview" alt="">
             </div>
           </div>
 
           <div class="content__main">
-            <!-- main text -->
+            <div class="content__main-item" v-for="item in post.content" :key="item">
+              <AppQuote v-if="item?.sectionType == 'quote'" :item="item" />
+
+              <AppDefaultText v-if="item?.sectionType == 'text'" :text="item.text" />
+
+              <AppImage v-if="item?.sectionType == 'image'" :item="item" />
+            </div>
           </div>
         </div>
       </div>
@@ -37,15 +54,20 @@
 
 <script lang='ts'>
 import AppLoader from '@/components/AppLoader.vue'
+import AppQuote from '@/components/PostUI/AppQuote.vue'
+import AppDefaultText from '@/components/PostUI/AppDefaultText.vue'
+import AppImage from '@/components/PostUI/AppImage.vue'
 import { useRoute } from 'vue-router'
 import { main, posts } from '../mocks/data'
 import store from '@/store'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'PostView',
-  data: () => {
+  data: function () {
     return {
-      posts
+      posts,
+      post: this.getPost()
     }
   },
   beforeMount() {
@@ -55,6 +77,11 @@ export default {
     }, 1200)
   },
   computed: {
+    getLoaderPostStatus() {
+      return store.getters.isLoadingPost
+    }
+  },
+  methods: {
     getPost(): object | null {
       const route = useRoute()
       const index = route.params.id
@@ -70,14 +97,10 @@ export default {
       }
 
       return null
-    },
-    getLoaderPostStatus() {
-      return store.getters.isLoadingPost
     }
   },
-  methods: {},
-  components: { AppLoader }
-}
+  components: { AppLoader, AppQuote, AppDefaultText, AppImage }
+})
 
 </script>
 
@@ -100,6 +123,7 @@ export default {
 
 .content {
   padding-top: 60px;
+  padding-bottom: 40px;
 
   &__body {}
 
@@ -108,7 +132,7 @@ export default {
   &__title {
     font-size: 40px;
     font-weight: 600;
-    margin-bottom: 13px;
+    margin-bottom: 40px;
   }
 
   &__p {
@@ -118,10 +142,30 @@ export default {
     line-height: 1.7;
   }
 
+  &__preview-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 15px;
+    margin-bottom: 40px;
+  }
+
+  &__info {
+    display: flex;
+    font-size: 18px;
+  }
+
+  &__info-date {
+    margin-right: 30px;
+  }
+
+  &__info-author {
+    font-weight: 500;
+  }
+
   &__tags {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
   }
 
   &__tags-title {
@@ -131,6 +175,9 @@ export default {
   }
 
   &__tags-tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 20px;
     font-weight: 400;
     padding: 8px;
@@ -141,11 +188,13 @@ export default {
     max-height: 42px;
     font-weight: 500;
     word-wrap: break-word;
+    margin-left: 10px;
   }
 
   &__preview {
-    max-width: 1290px;
+    max-width: 1500px;
     max-height: 700px;
+    height: auto;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -154,11 +203,12 @@ export default {
   }
 
   &__preview img {
-    object-fit: cover;
+    object-fit: contain;
+    border-radius: 14px;
   }
 
   &__main {
-    margin-top: 70px;
+    margin-top: 30px;
   }
 }
 </style>

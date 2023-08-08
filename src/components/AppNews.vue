@@ -37,8 +37,8 @@ export default {
   props: ['news', 'subscribe'],
   methods: {
     changeNotif() {
-      store.dispatch('changeNotifType', 'success')
       store.dispatch('changeNotifText', 'You have been subscribed!')
+      store.dispatch('changeNotifStatus')
     }
   }
 }
