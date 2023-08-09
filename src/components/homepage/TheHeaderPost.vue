@@ -7,7 +7,7 @@
         </div>
         <div class="header__info">
           <div class="header__info-top">
-            {{ mainPost.topTitle }}
+            Post of the day
           </div>
           <div class="header__info-title">
             <router-link :to="'/post/' + mainPost.id">
@@ -55,7 +55,7 @@
           </div>
           <div class="post_rightside">
             <div class="post__copy" @click="isCopy = !isCopy">
-              <img src="../../assets/copy.png" alt="" class="post__copy-icon">
+              <i class="fa-regular fa-clone"></i>
               <span v-if="!isCopy">Copy Link</span>
               <span v-if="isCopy">Copied!</span>
             </div>
@@ -89,6 +89,7 @@ export default {
 .header {
   &__left {
     margin-right: 80px;
+    min-width: 237px;
   }
 
   &__content {
@@ -268,8 +269,8 @@ export default {
     background-color: black;
   }
 
-  &__copy-icon {
-    width: 20px;
+  &__copy i {
+    font-size: 20px;
     margin-right: 5px;
   }
 

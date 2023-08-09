@@ -1,10 +1,10 @@
 <template>
-  <div class="app" :class="{ 'modal-active': isModal }">
+  <div class="app">
     <TheNavbar />
-    <AppModal v-if="!isModal" />
+    <AppModal v-if="isModal" />
     <AppNotification :text="getNotifText" :type="getNotifType" />
     <router-view />
-    <TheFooter />
+    <TheFooter v-if="!isFooter" />
   </div>
 </template>
 
@@ -19,8 +19,11 @@ export default {
   name: 'App',
   components: { TheNavbar, AppNotification, TheFooter, AppModal },
   computed: {
+    isFooter() {
+      return store.getters.isFooterActive
+    },
     isModal() {
-      return store.getters.isModalActive
+      return store.getters.isModal
     },
     getNotifText(): string {
       return store.getters.getNotifText
@@ -51,7 +54,7 @@ body {
 }
 
 .container {
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -61,8 +64,8 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-.modal-active {
-  // overflow: hidden;
+.active-modal {
+  overflow: hidden;
 }
 
 // Adapt

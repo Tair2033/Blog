@@ -23,6 +23,7 @@ export default {
   justify-content: center;
   align-items: center;
   border-radius: 14px;
+  padding-bottom: 35px;
 }
 
 .post-image img {

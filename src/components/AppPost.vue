@@ -1,12 +1,12 @@
 <template>
   <div class="postblock">
     <div class="postblock__body">
+      <div class="postblock__title" @click="updateLoaders">
+        <router-link :to="'/post/' + post.id">
+          {{ post.title }}
+        </router-link>
+      </div>
       <div class="postblock__container">
-        <div class="postblock__title" @click="updateLoaders">
-          <router-link :to="'/post/' + post.id">
-            {{ post.title }}
-          </router-link>
-        </div>
         <div class="postblock__p" @click="isOpenP = !isOpenP">
           <p v-if="!isOpenP">
             {{ post.paragraph.slice(0, 200) }}.....
@@ -32,17 +32,17 @@
             </div>
           </div>
           <div class="postblock__stats">
-            <div class="postblock__stats-like" @click="isLiked = !isLiked, isDisliked = false">
-              <AppLike type="like" :status="isLiked" />
-            </div>
-            <div class="postblock__stats-dis" @click="isDisliked = !isDisliked, isLiked = false">
-              <AppLike type="dislike" :status="isDisliked" />
+            <div class="postblock__stats-author">
+              {{ post.author }}
             </div>
             <div class="postblock__stats-date">
               {{ post.publishDate }}
             </div>
-            <div class="postblock__stats-author">
-              {{ post.author }}
+            <div class="postblock__stats-like" @click="isLiked = !isLiked, isDisliked = false">
+              <AppLike :class="{ 'like-btn': isLiked }" type="like" :status="isLiked" />
+            </div>
+            <div class="postblock__stats-dis" @click="isDisliked = !isDisliked, isLiked = false">
+              <AppLike type="dislike" :status="isDisliked" />
             </div>
           </div>
         </div>
@@ -76,8 +76,29 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.like-btn {
+  border-radius: 50px;
+  width: 1px;
+  height: 1px;
+  box-shadow: 13px 15px 1px 1px none;
+  background: none;
+}
+
+.like-btn {
+  animation: pulse-animation 0.8s;
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 13px 15px 0 0px #d70f0f72;
+  }
+
+  100% {
+    box-shadow: 13px 15px 0 20px rgba(220, 12, 12, 0);
+  }
+}
+
 .postblock {
-  padding: 24px;
   border-radius: 30px;
   transition: all 0.3s;
   background-color: white;
@@ -91,8 +112,17 @@ export default {
     cursor: default;
   }
 
+  &__container {
+    padding: 10px 24px 24px 24px;
+  }
+
   &__title {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding: 24px 24px 10px 24px;
     font-size: 30px;
+    width: 100%;
+    background-color: rgba(240, 238, 238, 0.367);
   }
 
   &__title a {
@@ -121,7 +151,7 @@ export default {
     position: absolute;
     height: 70px;
     width: 97%;
-    top: 120px;
+    top: 130px;
     z-index: -1;
     cursor: pointer;
   }
@@ -143,7 +173,7 @@ export default {
     z-index: 6;
     position: absolute;
     left: 47%;
-    top: 0px;
+    top: 13px;
     opacity: 0.4;
   }
 
@@ -199,8 +229,12 @@ export default {
   }
 
   &__stats-like {
-    width: 25px;
+    position: relative;
+    width: 33px;
+    height: 33px;
     margin-right: 15px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 1px 1px none;
   }
 
   &__stats-like img:hover {
@@ -211,6 +245,7 @@ export default {
   &__stats-dis {
     width: 25px;
     margin-right: 20px;
+    margin-top: 2px;
   }
 
   &__stats-dis img {
@@ -219,8 +254,10 @@ export default {
   }
 
   &__stats-author {
+    font-style: italic;
     font-weight: 600;
-    font-size: 17px;
+    font-size: 16px;
+    margin-right: 15px;
   }
 
   &__stats-date {

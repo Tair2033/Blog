@@ -46,11 +46,11 @@ export default defineComponent({
 }
 
 .like {
-  margin-top: 5px;
+  margin-top: 3px;
 }
 
 .like:hover {
-  fill: red;
+  // fill: red;
 }
 
 .active-dislike {

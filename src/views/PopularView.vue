@@ -40,8 +40,8 @@ export default {
         Interesting: 'interesting.png',
         Games: 'games.png',
         Cinema: 'cinema.png',
-        Gamedev: 'gamedev.png',
-        Travel: 'travel.png'
+        Travel: 'travel.png',
+        Gamedev: 'gamedev.png'
       }
     }
   },
@@ -93,7 +93,7 @@ export default {
   }
 
   &__filter-item:hover {
-    background-color: rgba(0, 0, 0, 0.113);
+    background-color: rgba(0, 0, 0, 0.061);
     color: blue;
 
     span {

@@ -40,13 +40,18 @@ interface News {
   preview?: string
 }
 
-type sectionType =
-  | 'text'
-  | 'header1'
-  | 'header2'
-  | 'header3'
-  | 'quote'
-  | 'image'
+interface User {
+  id: number
+  preview: string
+  nickname: string
+}
+
+export const user: User = {
+  id: 0,
+  preview:
+    'https://yt3.ggpht.com/a/AGF-l7_yqOBmeWMjR-X3DfYJj_90L6u923XAgAD-og=s900-c-k-c0xffffffff-no-rj-mo',
+  nickname: 'Peter1234'
+}
 
 export const main: MainPost = {
   id: 2434,
@@ -109,6 +114,37 @@ export const main: MainPost = {
       id: 6,
       sectionType: 'image',
       link: 'https://99designs-blog.imgix.net/blog/wp-content/uploads/2018/04/Screen-Shot-2018-04-12-at-6.06.12-PM.png?auto=format&q=60&fit=max&w=930'
+    },
+    {
+      id: 7,
+      sectionType: 'text',
+      text: 'These business multi-tools fulfill many of the professional basic needs: advertising, brand recognition, call-to-action, and of course contact information. When designed right, these pocket-sized billboards can leave a lasting impression and create life-long customers from passing strangers.'
+    },
+    {
+      id: 8,
+      sectionType: 'quote',
+      quoteAuthor: 'Andrey Jackson',
+      text: 'American Psycho has taught us nothing else, it’s the importance of business cards.'
+    },
+    {
+      id: 9,
+      sectionType: 'image',
+      link: 'https://99designs-blog.imgix.net/blog/wp-content/uploads/2018/04/Screen-Shot-2018-04-12-at-6.06.12-PM.png?auto=format&q=60&fit=max&w=930'
+    },
+    {
+      id: 10,
+      sectionType: 'text',
+      text: 'There’s one other preliminary activity that makes the rest of the business card design process run more smoothly. You need to know what you want to communicate. What kind of brand are you, as an individual or business? What do you want your business card to say, not just with words, but with the design?'
+    },
+    {
+      id: 11,
+      sectionType: 'text',
+      text: 'What your business card actually says depends on you. Work-from-home freelancers may have no need for a postal address, while professions that consult face-to-face require it. Or maybe it’s a strategic choice, such as drawing attention to your impressive social media following. The point is, different people benefit from different text on their business cards.'
+    },
+    {
+      id: 12,
+      sectionType: 'text',
+      text: 'So the next step is for you to decide what to put on your business card. Below is a list of some common choices, so you can decide which to include and exclude.'
     }
   ]
 }

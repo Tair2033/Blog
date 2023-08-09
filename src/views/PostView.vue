@@ -7,8 +7,19 @@
       <div class="content__body">
         <div class="container">
           <div class="content__top">
-            <div class="content__title">
-              {{ post?.title }}
+            <div class="content__titlebox">
+              <div class="content__titlebox-title">
+                {{ post?.title }}
+              </div>
+              <div class="content__titlebox-buttons">
+                <div class="star" @click="bookmark">
+                  <i :class="{ 'active-bookmark': isBookmarked }" class="fa-solid fa-star"></i>
+                </div>
+                <div class="setting" @click="settings">
+                  <i :class="{ 'active-settings': isSettings }" class="fa-solid fa-ellipsis"></i>
+                  <AppPopover v-if="isSettings" :content="popoverSettings" />
+                </div>
+              </div>
             </div>
             <div class="content__p">
               {{ post?.paragraph }}
@@ -59,13 +70,23 @@ import AppDefaultText from '@/components/PostUI/AppDefaultText.vue'
 import AppImage from '@/components/PostUI/AppImage.vue'
 import { useRoute } from 'vue-router'
 import { main, posts } from '../mocks/data'
-import store from '@/store'
 import { defineComponent } from 'vue'
+import store from '@/store'
+import AppPopover from '@/components/AppPopover.vue'
 
 export default defineComponent({
   name: 'PostView',
   data: function () {
     return {
+      popoverSettings: {
+        list: ['Share', 'Complain'],
+        position: {
+          x: 0,
+          y: 0
+        }
+      },
+      isBookmarked: false,
+      isSettings: false,
       posts,
       post: this.getPost()
     }
@@ -82,6 +103,17 @@ export default defineComponent({
     }
   },
   methods: {
+    settings(e: Event) {
+      this.isSettings = !this.isSettings
+
+      this.popoverSettings.position = {
+        x: (e.target as HTMLElement).clientTop,
+        y: (e.target as HTMLElement).clientLeft
+      }
+    },
+    bookmark() {
+      this.isBookmarked = !this.isBookmarked
+    },
     getPost(): object | null {
       const route = useRoute()
       const index = route.params.id
@@ -91,7 +123,6 @@ export default defineComponent({
       for (let i = 0; i < allPosts.length; i++) {
         if (allPosts[i].id.toString() === index) {
           post = { ...allPosts[i] }
-          console.log(post)
           return post
         }
       }
@@ -99,12 +130,28 @@ export default defineComponent({
       return null
     }
   },
-  components: { AppLoader, AppQuote, AppDefaultText, AppImage }
+  components: { AppLoader, AppQuote, AppDefaultText, AppImage, AppPopover }
 })
 
 </script>
 
 <style lang='scss' scoped>
+.active-bookmark {
+  color: rgb(248, 224, 7);
+  transition: all 0.1s;
+}
+
+.active-settings {
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.142);
+}
+
 .wrapper {
   width: 100%;
   padding: 0 50px;
@@ -125,14 +172,55 @@ export default defineComponent({
   padding-top: 60px;
   padding-bottom: 40px;
 
-  &__body {}
+  &__main {
+    padding-bottom: 60px;
+  }
 
-  &__top {}
+  &__titlebox {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+    align-items: center;
+    margin-bottom: 40px;
+  }
 
-  &__title {
+  &__titlebox-buttons {
+    display: flex;
+    align-items: center;
+  }
+
+  &__titlebox-title {
     font-size: 40px;
     font-weight: 600;
-    margin-bottom: 40px;
+  }
+
+  .star {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 20px;
+    font-size: 26px;
+    padding: 5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
+
+  .star i {
+    background-color: none;
+    transition: all 0.3s;
+  }
+
+  .setting {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    width: 35px;
+    border-radius: 50%;
+    font-size: 26px;
+    cursor: pointer;
   }
 
   &__p {

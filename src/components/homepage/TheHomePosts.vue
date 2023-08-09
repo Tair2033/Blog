@@ -70,6 +70,7 @@ export default {
 
   &__news-title {
     text-align: start;
+    text-decoration: underline;
     font-size: 24px;
     margin-bottom: 20px;
     margin-left: 12px;

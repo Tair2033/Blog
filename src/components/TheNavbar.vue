@@ -4,8 +4,10 @@
       <div class="container">
         <div class="navbar__content">
           <div class="navbar__main">
-            <div class="navbar__logo logo" @click="reloadPage">
-              <img src="../assets/blog.png" alt="logo">
+            <div class="navbar__logo logo">
+              <router-link to="/">
+                <img src="../assets/blog.png" alt="logo">
+              </router-link>
             </div>
             <ul class="navbar__menu">
               <li class="navbar__menu-item" @click="updateLoaders" v-for="(item, index) in navbarItems" :key="index">
@@ -15,13 +17,17 @@
               </li>
             </ul>
           </div>
-          <div class="navbar__login">
-            <button type="button" class="navbar__login-btn">
-              <span>Log in</span>
-            </button>
-            <img class="navbar__login-exit" src="../assets/exit.png" />
+          <div class="navbar__user" v-if="isLogin">
+            <div class="navbar__preview">
+              <img :src="user.preview" alt="">
+            </div>
           </div>
-          <!-- <div class="navbar__user"></div> -->
+          <div class="navbar__login" v-if="!isLogin">
+            <button type="button" @click="toggleModalStatus" class="navbar__login-btn">
+              <span>Log in</span>
+              <i class="exit fa-solid fa-right-to-bracket"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -30,16 +36,24 @@
 
 <script lang='ts'>
 import store from '@/store'
+import { user } from '@/mocks/data'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'TheNavbar',
   data: () => {
     return {
+      user,
       navbarItems: {
         Home: '/',
         Popular: '/popular',
         'Last Posts': '/new-posts'
       }
+    }
+  },
+  computed: {
+    isLogin() {
+      return store.getters.isLogin
     }
   },
   methods: {
@@ -48,9 +62,14 @@ export default {
     },
     updateLoaders() {
       store.dispatch('updateAllLoaders')
+    },
+    toggleModalStatus() {
+      const body = document.querySelector('body')
+      body?.classList.toggle('active-modal')
+      store.dispatch('changeModalStatus')
     }
   }
-}
+})
 
 </script>
 
@@ -60,7 +79,8 @@ a {
 }
 
 .active-link {
-  color: rgba(43, 60, 217, 0.802);
+  color: rgba(21, 43, 239, 0.867);
+  font-weight: 800;
 }
 
 .navbar {
@@ -77,11 +97,14 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 15px;
   }
 
   &__logo {
     margin-right: 40px;
+  }
+
+  &__logo:hover {
+    cursor: pointer;
   }
 
   &__menu {
@@ -97,7 +120,7 @@ a {
   &__menu-item a {
     transition: all 0.25s;
     text-decoration: none;
-    font-weight: 500;
+    // font-weight: 500;
     font-size: calc(16px + 4 * (100vw / 1400));
     height: 100%;
     padding-left: 10px;
@@ -109,39 +132,77 @@ a {
   }
 
   &__user {
-    display: block;
+    padding: 5px;
   }
+
+  &__preview {
+    cursor: pointer;
+    background-color: rgba(78, 78, 78, 0.778);
+    max-height: 55px;
+    max-width: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0px 0px 21px 5px white;
+    transition: all 0.4s;
+  }
+
+  &__preview img {
+    object-fit: contain;
+    height: auto;
+  }
+
+  &__preview:hover {
+    box-shadow: 0px 0px 21px 5px rgba(34, 60, 80, 0.253);
+  }
+
+  &__login {}
 
   &__login-btn {
+    background: none;
     padding: 10px;
-    min-width: 80px;
-    border-radius: 10px;
-    background-color: rgba(22, 107, 255, 0.547);
-    display: flex;
+    min-width: 75px;
+    overflow: hidden;
+    border-radius: 11px;
     transition: all 0.4s;
+    color: rgba(22, 107, 255, 0.865);
+    border: 1px solid rgba(22, 107, 255, 0.547);
+    display: flex;
     margin-right: 10px;
     cursor: pointer;
-    border: none;
-    display: inline-flex;
-  }
-
-  &__login-btn:hover {
-    min-width: 100px;
-    background-color: rgb(91, 154, 255);
-    color: white;
+    position: relative;
   }
 
   &__login-btn span {
+    z-index: -20;
     font-family: 'Montserrat', sans-serif;
     display: block;
-    margin-left: 7px;
-    font-weight: 600;
+    margin-left: 3px;
+    font-weight: 500;
     font-size: calc(14px + 2 * (100vw / 1400));
   }
 
-  &__login-exit {
-    width: 20px;
-    display: none;
+  &__login-btn:hover {
+    min-width: 90px;
+    background-color: rgba(22, 107, 255, 0.834);
+    color: white;
+
+    .exit {
+      visibility: visible;
+    }
+  }
+
+  .exit {
+    transition: all none;
+    transition-delay: 0.1s;
+    visibility: hidden;
+    z-index: 20;
+    position: absolute;
+    right: 0;
+    left: 0;
+    font-size: 20px;
+    color: white;
   }
 }
 </style>

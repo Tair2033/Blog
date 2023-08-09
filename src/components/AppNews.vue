@@ -19,7 +19,7 @@
           {{ subscribe?.text }}
         </div>
         <div class="news__subscribe-input">
-          <input type="email">
+          <input type="email" ref="email">
         </div>
         <div class="news__subscribe-button">
           <button @click="changeNotif" type="button">Subscribe</button>
@@ -31,17 +31,25 @@
 
 <script lang='ts'>
 import store from '@/store'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'AppNews',
   props: ['news', 'subscribe'],
   methods: {
     changeNotif() {
-      store.dispatch('changeNotifText', 'You have been subscribed!')
-      store.dispatch('changeNotifStatus')
+      if ((this.$refs.email as HTMLInputElement).value.length) {
+        store.dispatch('changeNotifText', 'You have been subscribed!')
+        store.dispatch('changeNotifStatus')
+
+        const timeout = setTimeout(() => {
+          store.dispatch('changeNotifStatus')
+          clearTimeout(timeout)
+        }, 2000)
+      }
     }
   }
-}
+})
 
 </script>
 
@@ -62,7 +70,7 @@ export default {
     font-size: 25px;
     font-weight: bold;
     padding-bottom: 10px;
-    color: rgba(6, 60, 141, 0.829);
+    color: rgba(10, 40, 85, 0.88);
   }
 
   &__p {
@@ -105,6 +113,7 @@ export default {
   }
 
   &__subscribe-input input {
+    touch-action: manipulation;
     width: 100%;
     height: 100%;
     border-radius: 8px;

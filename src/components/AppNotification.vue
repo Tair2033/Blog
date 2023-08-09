@@ -30,10 +30,11 @@ export default {
 
 <style lang='scss' scoped>
 .notif {
-  background-color: rgba(0, 0, 0, 0.644);
+  background-color: rgba(0, 5, 91, 0.787);
   z-index: 20;
   color: white;
-  transition: top, right 0.5s;
+  animation-name: activeNotif;
+  animation-duration: 0.3s;
   user-select: none;
   cursor: default;
   position: fixed;
@@ -49,5 +50,16 @@ export default {
   justify-content: center;
   align-items: center;
   box-shadow: -4px 7px 29px 3px rgba(34, 60, 80, 0.322);
+}
+
+@keyframes activeNotif {
+  0% {
+    right: -390px;
+  }
+
+  100% {
+    // top: -100px;
+    right: 30px;
+  }
 }
 </style>
