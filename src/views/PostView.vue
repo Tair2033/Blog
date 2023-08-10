@@ -17,7 +17,7 @@
                 </div>
                 <div class="setting" @click="settings">
                   <i :class="{ 'active-settings': isSettings }" class="fa-solid fa-ellipsis"></i>
-                  <AppPopover v-if="isSettings" :content="popoverSettings" />
+                  <AppPopover ref="pop" v-if="isSettings" :content="popoverSettings" />
                 </div>
               </div>
             </div>
@@ -85,8 +85,6 @@ export default defineComponent({
           y: 0
         }
       },
-      isBookmarked: false,
-      isSettings: false,
       posts,
       post: this.getPost()
     }
@@ -100,19 +98,25 @@ export default defineComponent({
   computed: {
     getLoaderPostStatus() {
       return store.getters.isLoadingPost
+    },
+    isBookmarked() {
+      return store.getters.isBookmarked
+    },
+    isSettings() {
+      return store.getters.isSettings
     }
   },
   methods: {
     settings(e: Event) {
-      this.isSettings = !this.isSettings
+      store.dispatch('isSettings')
 
       this.popoverSettings.position = {
-        x: (e.target as HTMLElement).clientTop,
-        y: (e.target as HTMLElement).clientLeft
+        x: -100,
+        y: (e.target as HTMLElement).getBoundingClientRect().top - 99
       }
     },
     bookmark() {
-      this.isBookmarked = !this.isBookmarked
+      store.dispatch('isBookmarked')
     },
     getPost(): object | null {
       const route = useRoute()
@@ -284,9 +288,6 @@ export default defineComponent({
     max-height: 700px;
     height: auto;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 14px;
   }
 

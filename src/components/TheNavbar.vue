@@ -18,9 +18,10 @@
             </ul>
           </div>
           <div class="navbar__user" v-if="isLogin">
-            <div class="navbar__preview">
+            <div class="navbar__preview" @click="toggleUserPopover">
               <img :src="user.preview" alt="">
             </div>
+            <AppPopover v-if="isUserPopover" :content="userItems" />
           </div>
           <div class="navbar__login" v-if="!isLogin">
             <button type="button" @click="toggleModalStatus" class="navbar__login-btn">
@@ -38,12 +39,25 @@
 import store from '@/store'
 import { user } from '@/mocks/data'
 import { defineComponent } from 'vue'
+import AppPopover from './AppPopover.vue'
 
 export default defineComponent({
   name: 'TheNavbar',
   data: () => {
     return {
       user,
+      isUserPopover: false,
+      userItems: {
+        list: [
+          'My account',
+          'Settings',
+          'Exit'
+        ],
+        position: {
+          x: 0,
+          y: 0
+        }
+      },
       navbarItems: {
         Home: '/',
         Popular: '/popular',
@@ -57,6 +71,14 @@ export default defineComponent({
     }
   },
   methods: {
+    toggleUserPopover(e: Event) {
+      this.userItems.position = {
+        x: (e.target as HTMLElement).getBoundingClientRect().left + 300,
+        y: (e.target as HTMLElement).getBoundingClientRect().top + 60
+      }
+
+      this.isUserPopover = !this.isUserPopover
+    },
     reloadPage(): void {
       location.reload()
     },
@@ -68,7 +90,8 @@ export default defineComponent({
       body?.classList.toggle('active-modal')
       store.dispatch('changeModalStatus')
     }
-  }
+  },
+  components: { AppPopover }
 })
 
 </script>
@@ -138,8 +161,8 @@ a {
   &__preview {
     cursor: pointer;
     background-color: rgba(78, 78, 78, 0.778);
-    max-height: 55px;
-    max-width: 55px;
+    max-height: 50px;
+    max-width: 50px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -156,8 +179,6 @@ a {
   &__preview:hover {
     box-shadow: 0px 0px 21px 5px rgba(34, 60, 80, 0.253);
   }
-
-  &__login {}
 
   &__login-btn {
     background: none;

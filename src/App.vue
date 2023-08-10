@@ -4,24 +4,19 @@
     <AppModal v-if="isModal" />
     <AppNotification :text="getNotifText" :type="getNotifType" />
     <router-view />
-    <TheFooter v-if="!isFooter" />
   </div>
 </template>
 
 <script lang='ts'>
 import AppModal from './components/AppModal.vue'
 import AppNotification from './components/AppNotification.vue'
-import TheFooter from './components/TheFooter.vue'
 import TheNavbar from './components/TheNavbar.vue'
 import store from './store'
 
 export default {
   name: 'App',
-  components: { TheNavbar, AppNotification, TheFooter, AppModal },
+  components: { TheNavbar, AppNotification, AppModal },
   computed: {
-    isFooter() {
-      return store.getters.isFooterActive
-    },
     isModal() {
       return store.getters.isModal
     },

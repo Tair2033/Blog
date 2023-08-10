@@ -1,9 +1,10 @@
 import { createStore } from 'vuex'
 
 interface State {
-  isLogin: boolean
-  isFooterActive: boolean
+  isLogin: boolean | null
   isModalActive: boolean
+  isBookmarked: boolean
+  isSettings: boolean
   notification: {
     text: string
     type: string
@@ -27,7 +28,8 @@ export default createStore<State>({
   state: {
     isLogin: false,
     isModalActive: false,
-    isFooterActive: true,
+    isBookmarked: false,
+    isSettings: false,
     notification: {
       text: 'Hello World',
       type: 'Default',
@@ -50,11 +52,14 @@ export default createStore<State>({
     isLogin(state) {
       return state.isLogin
     },
-    isFooter(state) {
-      return state.isFooterActive
-    },
     isModal(state) {
       return state.isModalActive
+    },
+    isBookmarked(state) {
+      return state.isBookmarked
+    },
+    isSettings(state) {
+      return state.isSettings
     },
     isLoadingHome(state) {
       return state.home.isLoadingHome
@@ -76,9 +81,6 @@ export default createStore<State>({
     }
   },
   mutations: {
-    changeFooterStatus(state) {
-      state.isFooterActive = !state.isFooterActive
-    },
     login(state) {
       state.isLogin = !state.isLogin
     },
@@ -87,6 +89,12 @@ export default createStore<State>({
       state.newPosts.isLoadingNew = true
       state.post.isLoadingPost = true
       state.home.isLoadingHome = true
+    },
+    isBookmarked(state, flag) {
+      state.isBookmarked = !state.isBookmarked
+    },
+    isSettings(state, flag) {
+      state.isSettings = !state.isSettings
     },
     changeModalStatus(state) {
       state.isModalActive = !state.isModalActive
@@ -111,6 +119,12 @@ export default createStore<State>({
     }
   },
   actions: {
+    isBookmarked(context, flag) {
+      context.commit('isBookmarked', flag)
+    },
+    isSettings(context, flag) {
+      context.commit('isSettings', flag)
+    },
     login(context) {
       context.commit('login')
     },

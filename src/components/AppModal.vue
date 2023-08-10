@@ -63,7 +63,6 @@ export default defineComponent({
         const timeout = setTimeout(() => {
           body?.classList.toggle('active-modal')
           store.dispatch('changeModalStatus')
-          location.reload()
           clearTimeout(timeout)
         }, 2000)
       }

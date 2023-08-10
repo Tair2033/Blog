@@ -12,7 +12,6 @@
             {{ post.paragraph.slice(0, 200) }}.....
           </p>
           <div class="postblock__p-hide" v-if="!isOpenP">
-            <div v-if="post.preview"></div>
             <img src="../assets/down-arrow.png" alt="">
           </div>
           <p v-if="isOpenP">
@@ -173,7 +172,7 @@ export default {
     z-index: 6;
     position: absolute;
     left: 47%;
-    top: 13px;
+    top: 18px;
     opacity: 0.4;
   }
 
