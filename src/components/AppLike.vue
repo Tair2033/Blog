@@ -53,8 +53,6 @@ export default defineComponent({
   fill: rgb(0, 0, 0);
 }
 
-.dislike {}
-
 .dislike:hover {
   fill: rgb(0, 0, 0);
 }

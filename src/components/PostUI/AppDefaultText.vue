@@ -1,5 +1,5 @@
 <template>
-  <div class="default-post-text default">
+  <div class="default">
     {{ text }}
   </div>
 </template>
@@ -16,5 +16,8 @@ export default {
 <style lang='scss' scoped>
 .default {
   margin-bottom: 30px;
+  font-size: calc(15px + 5 * (100vw / 1280));
+  line-height: 1.7;
+  font-family: 'Montserrat', sans-serif;
 }
 </style>

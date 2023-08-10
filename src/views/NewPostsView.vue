@@ -139,6 +139,7 @@ export default defineComponent({
     cursor: pointer;
     margin-left: 10px;
     font-size: 20px;
+    font-size: calc(19px + (100vw / 1280));
     padding: 10px;
     border-radius: 10px;
     display: flex;

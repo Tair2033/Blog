@@ -26,13 +26,16 @@ export default {
 }
 
 .quote {
-  font-size: 27px;
+  font-size: calc(15px + 8 * (100vw / 1280));
   font-weight: bold;
+  margin-left: 15px;
+  line-height: 1.7;
   color: rgb(12, 4, 94);
 }
 
 .author {
   margin-top: 25px;
   margin-left: 10px;
+  font-size: calc(10px + 6 * (100vw / 1280));
 }
 </style>

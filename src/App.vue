@@ -55,12 +55,6 @@ body {
   margin: 0 auto;
 }
 
-.default-post-text {
-  font-size: 20px;
-  line-height: 1.7;
-  font-family: 'Montserrat', sans-serif;
-}
-
 .active-modal {
   overflow: hidden;
 }

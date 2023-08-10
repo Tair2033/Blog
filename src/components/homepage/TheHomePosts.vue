@@ -62,7 +62,7 @@ export default {
   display: flex;
 
   &__title {
-    font-size: 24px;
+    font-size: calc(16px + 6 * (100vw / 1280));
     margin-bottom: 20px;
     text-decoration: underline;
     margin-left: 20px;
@@ -73,7 +73,7 @@ export default {
   &__news-title {
     text-align: start;
     text-decoration: underline;
-    font-size: 24px;
+    font-size: calc(16px + 6 * (100vw / 1280));
     margin-bottom: 20px;
     margin-left: 12px;
     font-weight: 600;
@@ -89,8 +89,9 @@ export default {
   &__redirect {
     cursor: pointer;
     padding-top: 20px;
+    padding-bottom: 20px;
     text-align: center;
-    font-size: 20px;
+    font-size: calc(12px + 6 * (100vw / 1280));
   }
 
   &__redirect a {

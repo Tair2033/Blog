@@ -68,14 +68,15 @@ export default defineComponent({
   }
 
   &__title {
-    font-size: 25px;
+    font-size: calc(12px + 6 * (100vw / 1280));
+    // font-size: 25px;
     font-weight: bold;
     padding-bottom: 10px;
     color: rgba(10, 40, 85, 0.88);
   }
 
   &__p {
-    font-size: 15px;
+    font-size: calc(9px + 5 * (100vw / 1280));
     word-wrap: break-word;
     line-height: 1.5;
   }
@@ -85,6 +86,7 @@ export default defineComponent({
     font-size: 14px;
     font-weight: 500;
     margin-top: 10px;
+    font-size: calc(7px + 5 * (100vw / 1280));
   }
 
   &__subscribe {
@@ -97,13 +99,14 @@ export default defineComponent({
   &__subscribe-title {
     color: rgb(16, 16, 91);
     font-weight: 600;
-    font-size: 22px;
+    font-size: calc(13px + 5 * (100vw / 1280));
     margin-bottom: 15px;
     text-align: center;
   }
 
   &__subscribe-p {
     font-size: 15px;
+    font-size: calc(9px + 5 * (100vw / 1280));
     word-break: break-word;
     line-height: 1.5;
     margin-bottom: 10px;

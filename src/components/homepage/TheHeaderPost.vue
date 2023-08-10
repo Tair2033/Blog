@@ -124,11 +124,12 @@ export default {
   &__info-top {
     font-style: italic;
     font-weight: 600;
+    font-size: calc(13px + 5 * (100vw / 1280));
   }
 
   &__info-title {
     margin: 25px 0;
-    font-size: 30px;
+    font-size: calc(19px + 8 * (100vw / 1280));
     font-weight: bold;
     color: black;
     transition: all 0.3s;
@@ -144,7 +145,7 @@ export default {
   }
 
   &__info-p {
-    font-size: 17px;
+    font-size: calc(14px + 5 * (100vw / 1280));
     font-weight: 500;
     margin-bottom: 20px;
     line-height: 1.5;
@@ -160,12 +161,12 @@ export default {
     cursor: default;
     border: 3px solid black;
     border-radius: 19px;
+    font-size: calc(10px + 4 * (100vw / 1280));
     padding: 8px;
     margin-left: 10px;
     user-select: none;
-    max-height: 42px;
+    // min-height: 42px;
     font-weight: 500;
-    word-wrap: break-word;
   }
 
   &__tags-tag:first-child {
@@ -233,18 +234,22 @@ export default {
 
   &__username-text {
     margin-bottom: 15px;
+    font-size: calc(11px + 5 * (100vw / 1280));
   }
 
   &__username-name {
     font-weight: bold;
+    font-size: calc(11px + 5 * (100vw / 1280));
   }
 
   &__publish-text {
     margin-bottom: 15px;
+    font-size: calc(11px + 5 * (100vw / 1280));
   }
 
   &__publish-date {
     font-weight: bold;
+    font-size: calc(11px + 5 * (100vw / 1280));
   }
 
   &__copy {
@@ -260,9 +265,9 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
     transition-property: background-color, color;
     transition-duration: 0.4s;
+    font-size: calc(9px + 4 * (100vw / 1280));
   }
 
   &__copy:hover {
@@ -271,7 +276,6 @@ export default {
   }
 
   &__copy i {
-    font-size: 20px;
     margin-right: 5px;
   }
 

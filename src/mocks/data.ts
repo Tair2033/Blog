@@ -343,7 +343,7 @@ export const news: Array<News> = [
   {
     id: 0,
     title: 'We are released!',
-    text: 'Insiders were tipped off earlier today when news broke claiming Royce had released some of his senatorial staff to focus solely on a new campaign committee, although official confirmation and a press conference have yet to be announced.',
+    text: 'Insiders were tipped off earlier today when news broke claiming Royce had released some of his senatorial staff.',
     publishDate: '22.04.2023'
   },
   {

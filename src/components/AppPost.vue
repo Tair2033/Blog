@@ -119,6 +119,7 @@ export default {
     border-top-right-radius: 30px;
     padding: 24px 24px 10px 24px;
     font-size: 30px;
+    font-size: calc(17px + 10 * (100vw / 1280));
     width: 100%;
     background-color: rgba(240, 238, 238, 0.367);
   }
@@ -137,6 +138,7 @@ export default {
   &__p {
     margin-top: 10px;
     font-size: 17px;
+    font-size: calc(12px + 6 * (100vw / 1280));
     padding-bottom: 20px;
     word-wrap: break-word;
     line-height: 1.7;
@@ -208,11 +210,13 @@ export default {
   &__tags span {
     margin-right: 10px;
     font-weight: 500;
+    font-size: calc(13px + 5 * (100vw / 1280));
   }
 
   &__tags-tag {
     background-color: white;
     font-weight: 500;
+    font-size: calc(10px + 6 * (100vw / 1280));
     padding: 8px;
     border: 2px solid black;
     margin-left: 10px;
@@ -251,14 +255,15 @@ export default {
   }
 
   &__stats-author {
+    font-size: calc(12px + 5 * (100vw / 1280));
     font-style: italic;
     font-weight: 600;
-    font-size: 16px;
     margin-right: 15px;
   }
 
   &__stats-date {
     margin-right: 20px;
+    font-size: calc(12px + 5 * (100vw / 1280));
   }
 }
 
@@ -274,8 +279,6 @@ export default {
     flex-direction: column;
     margin-bottom: 20px;
   }
-
-  .postblock__tags {}
 }
 
 @media (max-width: 1020px) {

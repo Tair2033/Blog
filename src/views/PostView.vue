@@ -192,7 +192,8 @@ export default defineComponent({
   }
 
   &__titlebox-title {
-    font-size: 40px;
+    // мин размер + добавочное значение(def - min) * (100vw / ширину макета)
+    font-size: calc(20px + 13 * (100vw / 1280));
     font-weight: 600;
     padding-right: 20px;
   }
@@ -227,7 +228,7 @@ export default defineComponent({
   }
 
   &__p {
-    font-size: 20px;
+    font-size: calc(15px + 5 * (100vw / 1280));
     font-weight: 400;
     margin-bottom: 10px;
     line-height: 1.7;
@@ -248,19 +249,22 @@ export default defineComponent({
 
   &__info-date {
     margin-right: 30px;
+    font-size: calc(10px + 6 * (100vw / 1280));
   }
 
   &__info-author {
     font-weight: 500;
+    font-size: calc(10px + 6 * (100vw / 1280));
   }
 
   &__tags {
     display: flex;
     align-items: center;
+    // flex-wrap: wrap;
   }
 
   &__tags-title {
-    font-size: 20px;
+    font-size: calc(14px + 6 * (100vw / 1280));
     font-weight: 400;
     margin-right: 10px;
   }
@@ -269,14 +273,12 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: calc(11px + 5 * (100vw / 1280));
     font-weight: 400;
     padding: 8px;
-    border: 3px solid black;
     cursor: default;
     border-radius: 19px;
     user-select: none;
-    max-height: 42px;
     font-weight: 500;
     word-wrap: break-word;
     margin-left: 10px;
@@ -310,6 +312,16 @@ export default defineComponent({
   .content__titlebox-buttons {
     margin-bottom: 20px;
     align-self: flex-end;
+  }
+}
+
+@media (max-width: 620px) {
+  .content__preview-top {
+    display: block;
+  }
+
+  .content__info {
+    margin-top: 15px;
   }
 }
 </style>
