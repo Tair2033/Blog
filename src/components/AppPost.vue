@@ -12,7 +12,7 @@
             {{ post.paragraph.slice(0, 200) }}.....
           </p>
           <div class="postblock__p-hide" v-if="!isOpenP">
-            <img src="../assets/down-arrow.png" alt="">
+            <img src="/images/down-arrow.png" alt="">
           </div>
           <p v-if="isOpenP">
             {{ post.paragraph }}
@@ -103,7 +103,6 @@ export default {
   background-color: white;
   margin-bottom: 15px;
   background-color: rgba(0, 0, 0, 0.097);
-  margin-right: 20px;
   position: relative;
   max-width: 1400px;
 
@@ -180,7 +179,6 @@ export default {
     border-radius: 15px;
     z-index: 10;
     width: auto;
-    min-height: 450px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -274,10 +272,16 @@ export default {
 @media (max-width: 1150px) {
   .postblock__bottom {
     flex-direction: column;
+    margin-bottom: 20px;
   }
 
-  .postblock__tags {
-    margin-bottom: 20px;
+  .postblock__tags {}
+}
+
+@media (max-width: 1020px) {
+  .postblock__bottom {
+    flex-direction: row;
+    align-items: center;
   }
 }
 
@@ -298,9 +302,20 @@ export default {
   }
 }
 
+@media (max-width: 820px) {
+  .postblock__bottom {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .postblock__tags {
+    margin-bottom: 10px;
+  }
+}
+
 @media (max-width: 670px) {
   .postblock__p-hide {
-    top: 180px;
+    top: 120px;
   }
 }
 </style>

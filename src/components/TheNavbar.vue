@@ -6,31 +6,53 @@
           <div class="navbar__main">
             <div class="navbar__logo logo">
               <router-link to="/">
-                <img src="../assets/blog.png" alt="logo">
+                <img src="/images/blog.png" alt="logo">
               </router-link>
             </div>
-            <ul class="navbar__menu">
+
+            <ul class="navbar__menu burger">
               <li class="navbar__menu-item" @click="updateLoaders" v-for="(item, index) in navbarItems" :key="index">
                 <routerLink :to="item">
                   {{ index }}
                 </routerLink>
               </li>
             </ul>
+
           </div>
-          <div class="navbar__user" v-if="isLogin">
-            <div class="navbar__preview" @click="toggleUserPopover">
-              <img :src="user.preview" alt="">
+
+          <div class="navbar__right">
+            <div class="navbar__burger" @click="isBurger = !isBurger">
+              <i class="fa-solid fa-bars"></i>
             </div>
-            <AppPopover v-if="isUserPopover" :content="userItems" />
-          </div>
-          <div class="navbar__login" v-if="!isLogin">
-            <button type="button" @click="toggleModalStatus" class="navbar__login-btn">
-              <span>Log in</span>
-              <i class="exit fa-solid fa-right-to-bracket"></i>
-            </button>
+
+            <div class="navbar__user" v-if="isLogin" @click="toggleUserPopover">
+              <div class="navbar__preview">
+                <img :src="user.preview" alt="">
+              </div>
+              <div class="navbar__nickname">
+                {{ user.nickname }}
+              </div>
+              <AppPopover v-if="isUserPopover" :content="userItems" />
+            </div>
+            <div class="navbar__login" v-if="!isLogin">
+              <button type="button" @click="toggleModalStatus" class="navbar__login-btn">
+                <span>Log in</span>
+                <i class="exit fa-solid fa-right-to-bracket"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="navbar__adaptive" v-if="isBurger">
+      <ul class="navbar__menu-active">
+        <li class="navbar__menu-item-active" @click="navbarItemClick" v-for="(item, index) in navbarItems" :key="index">
+          <routerLink :to="item">
+            {{ index }}
+          </routerLink>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -46,6 +68,7 @@ export default defineComponent({
   data: () => {
     return {
       user,
+      isBurger: false,
       isUserPopover: false,
       userItems: {
         list: [
@@ -71,19 +94,23 @@ export default defineComponent({
     }
   },
   methods: {
-    toggleUserPopover(e: Event) {
+    updateLoaders() {
+      store.dispatch('updateAllLoaders')
+    },
+    navbarItemClick() {
+      this.updateLoaders()
+      this.isBurger = !this.isBurger
+    },
+    toggleUserPopover(e: MouseEvent) {
       this.userItems.position = {
-        x: (e.target as HTMLElement).getBoundingClientRect().left + 300,
-        y: (e.target as HTMLElement).getBoundingClientRect().top + 60
+        x: e.clientX - 100,
+        y: (e.target as HTMLElement).getBoundingClientRect().top + 30
       }
 
       this.isUserPopover = !this.isUserPopover
     },
     reloadPage(): void {
       location.reload()
-    },
-    updateLoaders() {
-      store.dispatch('updateAllLoaders')
     },
     toggleModalStatus() {
       const body = document.querySelector('body')
@@ -130,6 +157,42 @@ a {
     cursor: pointer;
   }
 
+  &__adaptive {
+    padding-top: 30px;
+  }
+
+  &__menu-active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__menu-item-active {
+    width: 100%;
+    text-align: center;
+    list-style: none;
+    margin-bottom: 10px;
+    font-size: 25px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  &__menu-item-active:hover {
+    background-color: rgba(225, 224, 224, 0.748);
+  }
+
+  &__menu-item-active a {
+    padding: 15px 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  &__menu-item-active a:hover {
+    color: rgba(43, 60, 217, 0.802);
+  }
+
   &__menu {
     display: flex;
     align-items: center;
@@ -140,10 +203,14 @@ a {
     list-style: none;
   }
 
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
   &__menu-item a {
     transition: all 0.25s;
     text-decoration: none;
-    // font-weight: 500;
     font-size: calc(16px + 4 * (100vw / 1400));
     height: 100%;
     padding-left: 10px;
@@ -155,20 +222,36 @@ a {
   }
 
   &__user {
+    cursor: pointer;
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 21px 5px white;
+  }
+
+  &__user:hover {
+    .navbar__preview {
+      box-shadow: 0px 0px 21px 5px rgba(34, 60, 80, 0.253);
+    }
+
+    .navbar__nickname {
+      text-shadow: -6px 1px 7px rgba(4, 2, 1, 0.396);
+    }
   }
 
   &__preview {
     cursor: pointer;
     background-color: rgba(78, 78, 78, 0.778);
-    max-height: 50px;
-    max-width: 50px;
+    max-height: 35px;
+    max-width: 35px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     overflow: hidden;
-    box-shadow: 0px 0px 21px 5px white;
     transition: all 0.4s;
+    margin-bottom: 4px;
   }
 
   &__preview img {
@@ -176,8 +259,12 @@ a {
     height: auto;
   }
 
-  &__preview:hover {
-    box-shadow: 0px 0px 21px 5px rgba(34, 60, 80, 0.253);
+  .navbar__nickname {
+    font-size: 14px;
+    color: black;
+    transition: all 0.8s;
+    margin-top: 2px;
+    font-weight: 500;
   }
 
   &__login-btn {
@@ -224,6 +311,38 @@ a {
     left: 0;
     font-size: 20px;
     color: white;
+  }
+}
+
+@media (min-width: 634px) {
+  .navbar__burger {
+    display: none;
+  }
+
+  .navbar__adaptive {
+    display: none;
+  }
+}
+
+@media (max-width: 633px) {
+  .burger {
+    display: none;
+  }
+
+  .navbar__burger {
+    cursor: pointer;
+    margin-right: 15px;
+    font-size: 30px;
+  }
+
+  .navbar__burger i {
+    transition: all 0.3s;
+  }
+
+  .navbar__burger i:hover {
+    transition: all 0.3s;
+
+    color: rgb(20, 96, 246);
   }
 }
 </style>

@@ -70,12 +70,12 @@ export const main: MainPost = {
     {
       id: 0,
       icon: 'twitter.png',
-      link: 'www.x.com'
+      link: 'https://www.x.com'
     },
     {
       id: 1,
       icon: 'vk.png',
-      link: 'www.facebook.com'
+      link: 'https://www.vk.com'
     }
   ],
   content: [
@@ -165,12 +165,12 @@ export const posts: Array<Post> = [
       {
         id: 0,
         icon: 'twitter.png',
-        link: 'www.x.com'
+        link: 'https://www.x.com'
       },
       {
         id: 1,
         icon: 'vk.png',
-        link: 'www.facebook.com'
+        link: 'https://www.vk.com'
       }
     ],
     likes: 123,
@@ -226,12 +226,12 @@ export const posts: Array<Post> = [
       {
         id: 0,
         icon: 'twitter.png',
-        link: 'www.x.com'
+        link: 'https://www.x.com'
       },
       {
         id: 1,
         icon: 'vk.png',
-        link: 'www.facebook.com'
+        link: 'https://www.vk.com'
       }
     ],
     likes: 34,
@@ -289,12 +289,12 @@ export const posts: Array<Post> = [
       {
         id: 0,
         icon: 'twitter.png',
-        link: 'www.x.com'
+        link: 'https://www.x.com'
       },
       {
         id: 1,
         icon: 'vk.png',
-        link: 'www.facebook.com'
+        link: 'https://www.vk.com'
       }
     ],
     likes: 42,
@@ -343,7 +343,7 @@ export const news: Array<News> = [
   {
     id: 0,
     title: 'We are released!',
-    text: 'Drgrlgo moprmprmb oktrbop rtbkmkml mcsdop moisdop ooo.',
+    text: 'Insiders were tipped off earlier today when news broke claiming Royce had released some of his senatorial staff to focus solely on a new campaign committee, although official confirmation and a press conference have yet to be announced.',
     publishDate: '22.04.2023'
   },
   {

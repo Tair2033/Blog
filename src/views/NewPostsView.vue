@@ -8,20 +8,27 @@
           </div>
 
           <div v-if="!loadingStatus">
-            <div class="fresh__filter">
+            <div class="fresh__filter" :class="{ 'toggle-filter': isListActive }">
               <div class="fresh__filter-title">
                 <i class="fa-solid fa-calendar-plus"></i>
                 <span>
                   Last
                 </span>
               </div>
-              <div class="fresh__filter-item" @click="toggleFilter(item, index)"
-                :class="{ 'active-filter': index == activeFilter }" v-for="(item, index) in filterItems" :key="index">
-                {{ item }}
+              <div :class="{ 'toggle-list': isListActive }" class="fresh__flex">
+                <div class="fresh__filter-item" @click="toggleFilter(item, index)"
+                  :class="{ 'active-filter': index == activeFilter }" v-for="( item, index ) in  filterItems "
+                  :key="index">
+                  {{ item }}
+                </div>
+              </div>
+              <div class="fresh__btn toggle-btn" :class="{ 'active-arrow': isListActive }"
+                @click="isListActive = !isListActive">
+                <i class="fa-solid fa-chevron-down"></i>
               </div>
             </div>
             <div class="fresh__box">
-              <AppPost v-for="(post, index) in posts" :key="index" :post="post" />
+              <AppPost v-for="( post, index ) in  posts " :key="index" :post="post" />
             </div>
           </div>
         </div>
@@ -42,13 +49,14 @@ export default defineComponent({
   data: () => {
     return {
       posts,
+      isListActive: true,
       activeFilter: 0,
       filterItems: [
-        'hour',
-        'day',
-        'week',
-        'month',
-        'year'
+        'Hour',
+        'Day',
+        'Week',
+        'Month',
+        'Year'
       ]
     }
   },
@@ -57,7 +65,7 @@ export default defineComponent({
     const timeout = setTimeout(() => {
       store.dispatch('changeNewLoadingStatus')
       clearTimeout(timeout)
-    }, 1300)
+    }, 700)
   },
   computed: {
     loadingStatus(): boolean {
@@ -74,9 +82,22 @@ export default defineComponent({
 </script>
 
 <style lang='scss' scoped>
-.active-filter {
-  color: white;
-  background-color: rgba(16, 4, 187, 0.568);
+.toggle-btn {
+  display: none;
+  cursor: pointer;
+  font-size: 21px;
+}
+
+.toggle-btn:hover {
+  color: rgba(16, 16, 253, 0.901);
+}
+
+.toggle-filter {
+  flex-direction: column;
+}
+
+.active-arrow {
+  transform: rotateX(180deg);
 }
 
 .fresh {
@@ -91,9 +112,15 @@ export default defineComponent({
   }
 
   &__filter {
-    padding-top: 30px;
+    margin-top: 30px;
     display: flex;
+    position: relative;
     align-items: center;
+  }
+
+  &__flex {
+    display: flex;
+    transition: all 1s;
   }
 
   &__filter-title {
@@ -114,11 +141,26 @@ export default defineComponent({
     font-size: 20px;
     padding: 10px;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
   }
 
   &__filter-item:hover {
     color: white;
     background-color: rgba(16, 4, 187, 0.333);
+  }
+
+  &__filter-item:focus {
+    background-color: rgba(16, 4, 187, 0.333);
+  }
+
+  .active-filter {
+    color: white;
+    background-color: rgba(16, 4, 187, 0.568);
+  }
+
+  .active-filter:hover {
+    background-color: rgba(16, 4, 187, 0.568);
   }
 
   &__content {
@@ -134,5 +176,38 @@ export default defineComponent({
     padding-top: 30px;
   }
 
+}
+
+@media (max-width: 580px) {
+  .fresh__filter {
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .fresh__flex {
+    flex-direction: column;
+    position: absolute;
+    transition: all 1s;
+    top: -190px;
+  }
+
+  .fresh__filter-title {
+    align-self: flex-start;
+    background-color: white;
+    z-index: 20;
+    width: 100%;
+  }
+
+  .toggle-btn {
+    display: flex;
+    align-self: flex-end;
+  }
+}
+
+.toggle-list {
+  // padding-bottom: 200px;
+  transition: all 1s;
+  position: static;
+  top: 150px;
 }
 </style>

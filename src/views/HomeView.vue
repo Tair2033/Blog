@@ -36,7 +36,7 @@ export default {
     const timeout = setTimeout(() => {
       store.dispatch('changeHomeLoadingStatus')
       clearTimeout(timeout)
-    }, 1000)
+    }, 700)
   },
   computed: {
     changeHomeLoadingStatus() {

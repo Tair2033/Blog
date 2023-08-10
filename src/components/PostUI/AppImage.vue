@@ -27,6 +27,7 @@ export default {
 }
 
 .post-image img {
+  width: 100%;
   object-fit: contain;
   border-radius: 14px;
 }

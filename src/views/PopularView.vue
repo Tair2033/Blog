@@ -5,7 +5,7 @@
         <div class="popular__box">
           <div class="popular__filter">
             <div class="popular__filter-item" v-for="(item, index) in filterItems" :key="index">
-              <img :src="require(`../assets/${item}`)" alt="logo">
+              <img :src="`/images/${item}`" alt="logo">
               <span>{{ index }}</span>
             </div>
           </div>
@@ -49,7 +49,7 @@ export default {
     const timeout = setTimeout(() => {
       store.dispatch('changePopularLoadingStatus')
       clearTimeout(timeout)
-    }, 1200)
+    }, 700)
   },
   computed: {
     loadingStatus(): boolean {
@@ -64,7 +64,6 @@ export default {
 
 <style lang='scss' scoped>
 .popular {
-  &__body {}
 
   &__box {
     padding-top: 20px;
@@ -79,7 +78,7 @@ export default {
   }
 
   &__filter {
-    min-width: 350px;
+    min-width: 250px;
   }
 
   &__filter-item {
@@ -117,6 +116,13 @@ export default {
 
   &__content {
     flex-grow: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  .popular__filter {
+    display: none;
   }
 }
 </style>

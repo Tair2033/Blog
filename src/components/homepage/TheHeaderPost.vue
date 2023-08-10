@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header__content header">
         <div class="header__left">
-          <img src="../../assets/header-element.png" alt="">
+          <img src="/images/header-element.png" alt="">
         </div>
         <div class="header__info">
           <div class="header__info-top">
@@ -60,9 +60,9 @@
               <span v-if="isCopy">Copied!</span>
             </div>
             <div class="post__social" v-for="social in mainPost.socialLinks" :key="social.id">
-              <div>
-                <img :src="require(`../../assets/${social.icon}`)" alt="">
-              </div>
+              <a :href="social.link">
+                <img :src="`/images/${social.icon}`" alt="">
+              </a>
             </div>
           </div>
         </div>
@@ -88,7 +88,7 @@ export default {
 <style lang='scss'>
 .header {
   &__left {
-    margin-right: 80px;
+    margin-right: 180px;
     min-width: 237px;
   }
 
@@ -119,7 +119,6 @@ export default {
 
   &__info {
     margin-top: 70px;
-    margin-left: 100px;
   }
 
   &__info-top {
@@ -149,12 +148,12 @@ export default {
     font-weight: 500;
     margin-bottom: 20px;
     line-height: 1.5;
-    padding-right: 60px;
   }
 
   &__tags {
     display: flex;
     flex-direction: row;
+    margin-bottom: 10px;
   }
 
   &__tags-tag {
@@ -179,22 +178,24 @@ export default {
   }
 
   &__postinfo {
-    padding-top: 150px;
+    padding-top: 70px;
   }
 
   &__preview {
     width: 100%;
+    max-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
-    height: 500px;
+    border-top-left-radius: 180px;
   }
 
   &__preview img {
-    border-top-left-radius: 180px;
     transition-property: filter;
     transition-duration: 1s;
     filter: brightness(50%);
     width: 100%;
-    height: 100%;
     object-fit: cover;
   }
 

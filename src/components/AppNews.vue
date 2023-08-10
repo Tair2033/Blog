@@ -1,14 +1,16 @@
 <template>
   <div class="news">
     <div class="news__body">
-      <div class="news__title">
-        {{ news?.title }}
-      </div>
-      <div class="news__p">
-        {{ news?.text }}
-      </div>
-      <div class="news__date">
-        {{ news?.publishDate }}
+      <div>
+        <div class="news__title">
+          {{ news?.title }}
+        </div>
+        <div class="news__p">
+          {{ news?.text }}
+        </div>
+        <div class="news__date">
+          {{ news?.publishDate }}
+        </div>
       </div>
 
       <div class="news__subscribe" v-if="subscribe">
@@ -61,7 +63,6 @@ export default defineComponent({
 
   &__body {
     font-family: 'Montserrat', sans-serif;
-    // background-color: aquamarine;
     padding: 12px;
     border-radius: 10px;
   }
@@ -75,7 +76,6 @@ export default defineComponent({
 
   &__p {
     font-size: 15px;
-    // word-break: break-all;
     word-wrap: break-word;
     line-height: 1.5;
   }
@@ -85,6 +85,13 @@ export default defineComponent({
     font-size: 14px;
     font-weight: 500;
     margin-top: 10px;
+  }
+
+  &__subscribe {
+    margin-top: 20px;
+    border: 1px solid rgba(57, 57, 57, 0.308);
+    padding: 12px;
+    border-radius: 17px;
   }
 
   &__subscribe-title {
@@ -97,13 +104,9 @@ export default defineComponent({
 
   &__subscribe-p {
     font-size: 15px;
-    word-break: break-all;
+    word-break: break-word;
     line-height: 1.5;
     margin-bottom: 10px;
-  }
-
-  &__subscribe {
-    margin-top: 20px;
   }
 
   &__subscribe-input {
@@ -127,6 +130,7 @@ export default defineComponent({
   }
 
   &__subscribe-button button {
+    font-size: 17px;
     margin-top: 10px;
     font-weight: 500;
     cursor: pointer;

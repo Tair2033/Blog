@@ -49,10 +49,6 @@ export default defineComponent({
   margin-top: 3px;
 }
 
-.like:hover {
-  // fill: red;
-}
-
 .active-dislike {
   fill: rgb(0, 0, 0);
 }

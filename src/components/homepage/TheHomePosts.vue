@@ -23,10 +23,12 @@
               News
             </div>
 
-            <AppNews v-for="section in news" :news="section" :key="section.id" />
+            <div class="infoblocks__newsblock">
+              <AppNews v-for="section in news" :news="section" :key="section.id" />
 
-            <div class="infoblocks__news-subscribe">
-              <AppNews :subscribe="subscribe" />
+              <div class="infoblocks__news-subscribe">
+                <AppNews :subscribe="subscribe" />
+              </div>
             </div>
           </div>
         </div>
@@ -57,7 +59,7 @@ export default {
 
 <style lang='scss'>
 .infoblocks {
-  padding: 20px;
+  display: flex;
 
   &__title {
     font-size: 24px;
@@ -106,6 +108,13 @@ export default {
   &__news {
     max-width: 300px;
   }
+
+  &__newsblock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 @media (max-width: 1020px) {
@@ -114,7 +123,7 @@ export default {
   }
 
   .infoblocks__news {
-    width: 100%;
+    max-width: 100%;
   }
 
   .postblock {

@@ -150,15 +150,13 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   padding: 5px;
-  width: 35px;
-  height: 35px;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.142);
 }
 
 .wrapper {
   width: 100%;
-  padding: 0 50px;
+  padding: 0 20px;
 
   &__loader {
     display: flex;
@@ -173,7 +171,7 @@ export default defineComponent({
 }
 
 .content {
-  padding-top: 60px;
+  padding-top: 30px;
   padding-bottom: 40px;
 
   &__main {
@@ -184,7 +182,6 @@ export default defineComponent({
     position: relative;
     display: flex;
     justify-content: space-between;
-    margin-right: 20px;
     align-items: center;
     margin-bottom: 40px;
   }
@@ -197,6 +194,7 @@ export default defineComponent({
   &__titlebox-title {
     font-size: 40px;
     font-weight: 600;
+    padding-right: 20px;
   }
 
   .star {
@@ -220,8 +218,9 @@ export default defineComponent({
     position: relative;
     display: flex;
     justify-content: center;
-    padding: 5px;
+    align-items: center;
     width: 35px;
+    height: 35px;
     border-radius: 50%;
     font-size: 26px;
     cursor: pointer;
@@ -294,10 +293,23 @@ export default defineComponent({
   &__preview img {
     object-fit: contain;
     border-radius: 14px;
+    width: 100%;
   }
 
   &__main {
     margin-top: 30px;
+  }
+}
+
+@media (max-width: 820px) {
+  .content__titlebox {
+    flex-direction: column-reverse;
+    margin-bottom: 20px;
+  }
+
+  .content__titlebox-buttons {
+    margin-bottom: 20px;
+    align-self: flex-end;
   }
 }
 </style>

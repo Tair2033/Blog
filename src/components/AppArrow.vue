@@ -26,7 +26,5 @@ export default {
   font-size: 30px;
   background-color: rgba(55, 55, 55, 0.562);
   color: white;
-
-  &__body {}
 }
 </style>
