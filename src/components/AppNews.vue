@@ -1,7 +1,7 @@
 <template>
   <div class="news">
     <div class="news__body">
-      <div>
+      <div class="news__wrapper" v-if="!subscribe">
         <div class="news__title">
           {{ news?.title }}
         </div>
@@ -40,9 +40,13 @@ export default defineComponent({
   props: ['news', 'subscribe'],
   methods: {
     changeNotif() {
-      if ((this.$refs.email as HTMLInputElement).value.length) {
+      const inputElement = (this.$refs.email as HTMLInputElement)
+
+      if (inputElement.value.length) {
         store.dispatch('changeNotifText', 'You have been subscribed!')
         store.dispatch('changeNotifStatus')
+
+        inputElement.value = ''
 
         const timeout = setTimeout(() => {
           store.dispatch('changeNotifStatus')
@@ -59,7 +63,7 @@ export default defineComponent({
 .news {
   width: 100%;
   cursor: default;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 
   &__body {
     font-family: 'Montserrat', sans-serif;
@@ -69,10 +73,15 @@ export default defineComponent({
 
   &__title {
     font-size: calc(12px + 6 * (100vw / 1280));
-    // font-size: 25px;
     font-weight: bold;
     padding-bottom: 10px;
     color: rgba(10, 40, 85, 0.88);
+  }
+
+  &__wrapper {
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.267);
   }
 
   &__p {

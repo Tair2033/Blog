@@ -142,7 +142,19 @@ export default defineComponent({
 <style lang='scss' scoped>
 .active-bookmark {
   color: rgb(248, 224, 7);
-  transition: all 0.1s;
+  box-shadow: 1px 5px 1px 1px none;
+  animation: pulse-animation 1s;
+  border-radius: 50%;
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 1px 6px 0 0px #f2f605a4;
+  }
+
+  100% {
+    box-shadow: 1px 6px 0 20px rgba(220, 12, 12, 0);
+  }
 }
 
 .active-settings {
@@ -157,11 +169,12 @@ export default defineComponent({
 .wrapper {
   width: 100%;
   padding: 0 20px;
+  padding-top: 100px;
 
   &__loader {
     display: flex;
     justify-content: center;
-    padding-top: 40px;
+    padding-top: 120px;
   }
 }
 
@@ -192,8 +205,7 @@ export default defineComponent({
   }
 
   &__titlebox-title {
-    // мин размер + добавочное значение(def - min) * (100vw / ширину макета)
-    font-size: calc(20px + 13 * (100vw / 1280));
+    font-size: calc(12px + 2.3vw);
     font-weight: 600;
     padding-right: 20px;
   }
@@ -205,8 +217,6 @@ export default defineComponent({
     margin-right: 20px;
     font-size: 26px;
     padding: 5px;
-    width: 35px;
-    height: 35px;
     border-radius: 50%;
   }
 
@@ -225,6 +235,11 @@ export default defineComponent({
     border-radius: 50%;
     font-size: 26px;
     cursor: pointer;
+  }
+
+  .star a {
+    width: 10px;
+    height: 10px;
   }
 
   &__p {
@@ -260,7 +275,6 @@ export default defineComponent({
   &__tags {
     display: flex;
     align-items: center;
-    // flex-wrap: wrap;
   }
 
   &__tags-title {

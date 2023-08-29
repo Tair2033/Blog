@@ -1,12 +1,13 @@
 <template>
   <div class="header">
-    <div class="container">
+    <div class="header__container">
       <div class="header__content header">
         <div class="header__left">
           <img src="/images/header-element.png" alt="">
         </div>
         <div class="header__info">
           <div class="header__info-top">
+            <span>&#128293;</span>
             Post of the day
           </div>
           <div class="header__info-title">
@@ -92,6 +93,11 @@ export default {
     min-width: 237px;
   }
 
+  &__container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
   &__content {
     display: flex;
     margin: 0 15px;
@@ -125,6 +131,10 @@ export default {
     font-style: italic;
     font-weight: 600;
     font-size: calc(13px + 5 * (100vw / 1280));
+  }
+
+  &__info-top span {
+    font-style: normal;
   }
 
   &__info-title {

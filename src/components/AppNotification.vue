@@ -30,7 +30,7 @@ export default {
 
 <style lang='scss' scoped>
 .notif {
-  background-color: rgba(0, 5, 91, 0.787);
+  background-color: rgb(8, 10, 47);
   z-index: 20;
   color: white;
   animation-name: activeNotif;
@@ -38,12 +38,12 @@ export default {
   user-select: none;
   cursor: default;
   position: fixed;
-  top: 20px;
+  bottom: 20px;
   right: 30px;
   min-width: 100px;
   max-height: 40px;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: calc(1vw);
   font-weight: 500;
   padding: 30px 25px;
   display: flex;

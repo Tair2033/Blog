@@ -1,6 +1,6 @@
 <template>
   <div class="fresh">
-    <div class="container">
+    <div class="fresh__container">
       <div class="fresh__body">
         <div class="fresh__content">
           <div class="fresh__loader" v-if="loadingStatus">
@@ -82,6 +82,11 @@ export default defineComponent({
 </script>
 
 <style lang='scss' scoped>
+.fresh__container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .toggle-btn {
   display: none;
   cursor: pointer;
@@ -106,6 +111,7 @@ export default defineComponent({
   width: 100%;
   align-items: center;
   justify-content: center;
+  padding-top: 100px;
 
   &__body {
     width: 100%;
@@ -170,7 +176,7 @@ export default defineComponent({
 
   &__loader {
     width: 100%;
-    padding-top: 220px;
+    padding-top: 135px;
   }
 
   &__box {

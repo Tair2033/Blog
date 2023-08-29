@@ -40,18 +40,20 @@ export default {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
 }
 
 .app {
   position: relative;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
 }
 

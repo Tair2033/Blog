@@ -71,7 +71,8 @@ export default defineComponent({
       const $node = e.target as HTMLElement
       const body = document.querySelector('body')
       if ($node.classList.contains('modal__close') ||
-        $node.classList.contains('modal__wrapper')) {
+        $node.classList.contains('modal__wrapper') ||
+        $node.classList.contains('modal')) {
         body?.classList.toggle('active-modal')
         store.dispatch('changeModalStatus')
       }
@@ -326,23 +327,27 @@ $size: 170px;
 
 .modal__wrapper {
   transition: all 0.4s;
-  height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  display: flex;
-  justify-content: center;
   background-color: rgba(0, 0, 0, 0.57);
   font-family: 'Poppins', sans-serif;
   z-index: 50;
 }
 
 .modal {
-  position: relative;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   border-radius: 20px;
   margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal__close {

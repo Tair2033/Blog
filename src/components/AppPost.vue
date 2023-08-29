@@ -11,9 +11,6 @@
           <p v-if="!isOpenP">
             {{ post.paragraph.slice(0, 200) }}.....
           </p>
-          <div class="postblock__p-hide" v-if="!isOpenP">
-            <img src="/images/down-arrow.png" alt="">
-          </div>
           <p v-if="isOpenP">
             {{ post.paragraph }}
           </p>
@@ -98,6 +95,7 @@ export default {
 }
 
 .postblock {
+  border: 1px solid rgba(0, 0, 255, 0.146);
   border-radius: 30px;
   transition: all 0.3s;
   background-color: white;
@@ -255,15 +253,20 @@ export default {
   }
 
   &__stats-author {
-    font-size: calc(12px + 5 * (100vw / 1280));
+    display: block;
+    text-align: center;
+    font-size: calc(8px + 0.5vw);
     font-style: italic;
     font-weight: 600;
     margin-right: 15px;
+    margin-left: 13px;
   }
 
   &__stats-date {
+    display: block;
+    text-align: center;
     margin-right: 20px;
-    font-size: calc(12px + 5 * (100vw / 1280));
+    font-size: calc(8px + 0.5vw);
   }
 }
 

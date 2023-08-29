@@ -34,6 +34,7 @@
               </div>
               <AppPopover v-if="isUserPopover" :content="userItems" />
             </div>
+
             <div class="navbar__login" v-if="!isLogin">
               <button type="button" @click="toggleModalStatus" class="navbar__login-btn">
                 <span>Log in</span>
@@ -125,15 +126,20 @@ export default defineComponent({
 
 <style lang='scss' scoped>
 a {
-  color: rgba(0, 0, 0, 0.891);
+  color: rgb(150, 150, 150);
 }
 
 .active-link {
-  color: rgba(21, 43, 239, 0.867);
+  color: rgb(134, 174, 254);
   font-weight: 800;
 }
 
 .navbar {
+  z-index: 50;
+  background-color: rgb(4, 15, 26);
+  position: fixed;
+  width: 100vw;
+  padding: 0 20px;
 
   &__body {
     font-family: 'Montserrat', sans-serif;
@@ -178,7 +184,7 @@ a {
   }
 
   &__menu-item-active:hover {
-    background-color: rgba(225, 224, 224, 0.748);
+    background-color: rgba(255, 252, 252, 0.342);
   }
 
   &__menu-item-active a {
@@ -187,10 +193,6 @@ a {
     width: 100%;
     height: 100%;
     text-decoration: none;
-  }
-
-  &__menu-item-active a:hover {
-    color: rgba(43, 60, 217, 0.802);
   }
 
   &__menu {
@@ -217,10 +219,6 @@ a {
     padding-right: 10px;
   }
 
-  &__menu-item a:hover {
-    color: rgba(43, 60, 217, 0.802);
-  }
-
   &__user {
     cursor: pointer;
     padding: 5px;
@@ -228,7 +226,6 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 0px 21px 5px white;
   }
 
   &__user:hover {
@@ -237,7 +234,7 @@ a {
     }
 
     .navbar__nickname {
-      text-shadow: -6px 1px 7px rgba(4, 2, 1, 0.396);
+      text-shadow: -6px 1px 7px rgba(223, 218, 216, 0.396);
     }
   }
 
@@ -261,7 +258,7 @@ a {
 
   .navbar__nickname {
     font-size: 14px;
-    color: black;
+    color: rgb(242, 242, 242);
     transition: all 0.8s;
     margin-top: 2px;
     font-weight: 500;
@@ -294,7 +291,7 @@ a {
   &__login-btn:hover {
     min-width: 90px;
     background-color: rgba(22, 107, 255, 0.834);
-    color: white;
+    color: black;
 
     .exit {
       visibility: visible;
@@ -337,6 +334,7 @@ a {
 
   .navbar__burger i {
     transition: all 0.3s;
+    color: white;
   }
 
   .navbar__burger i:hover {

@@ -5,7 +5,7 @@
     </div>
     <div class="home" v-if="!changeHomeLoadingStatus">
       <div class="home__body">
-        <div class="container">
+        <div class="home__container">
           <div class="home__content">
             <TheHeaderPost :mainPost="mainPost" />
             <TheHomePosts :posts="posts" :news="news" />
@@ -45,16 +45,20 @@ export default {
   },
   components: { TheHeaderPost, TheHomePosts, AppLoader }
 }
-
 </script>
 <style lang="scss" scoped>
 .home {
-  padding-top: 20px;
+  padding-top: 100px;
 }
 
 .wrapper__loader {
   display: flex;
   justify-content: center;
   padding-top: 220px;
+}
+
+.home__container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 </style>

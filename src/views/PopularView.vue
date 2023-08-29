@@ -64,6 +64,7 @@ export default {
 
 <style lang='scss' scoped>
 .popular {
+  padding-top: 100px;
 
   &__box {
     padding-top: 20px;
@@ -74,7 +75,7 @@ export default {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 40px;
+    padding-top: 80px;
   }
 
   &__filter {

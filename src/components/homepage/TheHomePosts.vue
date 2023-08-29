@@ -24,7 +24,7 @@
             </div>
 
             <div class="infoblocks__newsblock">
-              <AppNews v-for="section in news" :news="section" :key="section.id" />
+              <AppNews v-for="section in news" :news="section" :key="section" />
 
               <div class="infoblocks__news-subscribe">
                 <AppNews :subscribe="subscribe" />
