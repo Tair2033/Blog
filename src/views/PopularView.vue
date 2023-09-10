@@ -4,8 +4,12 @@
       <div class="container">
         <div class="popular__box">
           <div class="popular__filter">
-            <div class="popular__filter-item" v-for="(item, index) in filterItems" :key="index">
-              <img :src="`/images/${item}`" alt="logo">
+            <div
+              class="popular__filter-item"
+              v-for="(item, index) in filterItems"
+              :key="index"
+            >
+              <img :src="`/images/${item}`" alt="logo" />
               <span>{{ index }}</span>
             </div>
           </div>
@@ -14,7 +18,11 @@
               <AppLoader />
             </div>
             <div v-if="!loadingStatus">
-              <AppPost v-for="(post, index) in posts" :post="post" :key="index" />
+              <AppPost
+                v-for="(post, index) in posts"
+                :post="post"
+                :key="index"
+              />
             </div>
           </div>
         </div>
@@ -23,8 +31,7 @@
   </div>
 </template>
 
-<script lang='ts'>
-
+<script lang="ts">
 import AppLoader from '@/components/AppLoader.vue'
 import AppPost from '@/components/AppPost.vue'
 import { posts } from '@/mocks/data'
@@ -59,10 +66,9 @@ export default {
   methods: {},
   components: { AppPost, AppLoader }
 }
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .popular {
   padding-top: 100px;
 
@@ -112,7 +118,7 @@ export default {
     background-position: 0% 100%;
     background-repeat: no-repeat;
     background-size: 0% 2px;
-    transition: background-size .3s;
+    transition: background-size 0.3s;
   }
 
   &__content {
@@ -121,7 +127,6 @@ export default {
 }
 
 @media (max-width: 1024px) {
-
   .popular__filter {
     display: none;
   }

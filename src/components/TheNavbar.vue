@@ -6,18 +6,22 @@
           <div class="navbar__main">
             <div class="navbar__logo logo">
               <router-link to="/">
-                <img src="/images/blog.png" alt="logo">
+                <img src="/images/blog.png" alt="logo" />
               </router-link>
             </div>
 
             <ul class="navbar__menu burger">
-              <li class="navbar__menu-item" @click="updateLoaders" v-for="(item, index) in navbarItems" :key="index">
+              <li
+                class="navbar__menu-item"
+                @click="updateLoaders"
+                v-for="(item, index) in navbarItems"
+                :key="index"
+              >
                 <routerLink :to="item">
                   {{ index }}
                 </routerLink>
               </li>
             </ul>
-
           </div>
 
           <div class="navbar__right">
@@ -27,7 +31,7 @@
 
             <div class="navbar__user" v-if="isLogin" @click="toggleUserPopover">
               <div class="navbar__preview">
-                <img :src="user.preview" alt="">
+                <img :src="user.preview" alt="" />
               </div>
               <div class="navbar__nickname">
                 {{ user.nickname }}
@@ -36,7 +40,11 @@
             </div>
 
             <div class="navbar__login" v-if="!isLogin">
-              <button type="button" @click="toggleModalStatus" class="navbar__login-btn">
+              <button
+                type="button"
+                @click="toggleModalStatus"
+                class="navbar__login-btn"
+              >
                 <span>Log in</span>
                 <i class="exit fa-solid fa-right-to-bracket"></i>
               </button>
@@ -48,7 +56,12 @@
 
     <div class="navbar__adaptive" v-if="isBurger">
       <ul class="navbar__menu-active">
-        <li class="navbar__menu-item-active" @click="navbarItemClick" v-for="(item, index) in navbarItems" :key="index">
+        <li
+          class="navbar__menu-item-active"
+          @click="navbarItemClick"
+          v-for="(item, index) in navbarItems"
+          :key="index"
+        >
           <routerLink :to="item">
             {{ index }}
           </routerLink>
@@ -58,7 +71,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import store from '@/store'
 import { user } from '@/mocks/data'
 import { defineComponent } from 'vue'
@@ -72,11 +85,7 @@ export default defineComponent({
       isBurger: false,
       isUserPopover: false,
       userItems: {
-        list: [
-          'My account',
-          'Settings',
-          'Exit'
-        ],
+        list: ['My account', 'Settings', 'Exit'],
         position: {
           x: 0,
           y: 0
@@ -121,10 +130,9 @@ export default defineComponent({
   },
   components: { AppPopover }
 })
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 a {
   color: rgb(150, 150, 150);
 }

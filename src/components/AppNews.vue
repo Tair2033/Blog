@@ -21,7 +21,7 @@
           {{ subscribe?.text }}
         </div>
         <div class="news__subscribe-input">
-          <input type="email" ref="email">
+          <input type="email" ref="email" />
         </div>
         <div class="news__subscribe-button">
           <button @click="changeNotif" type="button">Subscribe</button>
@@ -31,7 +31,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import store from '@/store'
 import { defineComponent } from 'vue'
 
@@ -40,7 +40,7 @@ export default defineComponent({
   props: ['news', 'subscribe'],
   methods: {
     changeNotif() {
-      const inputElement = (this.$refs.email as HTMLInputElement)
+      const inputElement = this.$refs.email as HTMLInputElement
 
       if (inputElement.value.length) {
         store.dispatch('changeNotifText', 'You have been subscribed!')
@@ -56,10 +56,9 @@ export default defineComponent({
     }
   }
 })
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .news {
   width: 100%;
   cursor: default;

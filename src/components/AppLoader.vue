@@ -11,15 +11,13 @@
   </div>
 </template>
 
-<script lang='ts'>
-
+<script lang="ts">
 export default {
   name: 'AppLoader'
 }
-
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 .lds-roller {
   display: inline-block;
   position: relative;
@@ -33,7 +31,7 @@ export default {
 }
 
 .lds-roller div:after {
-  content: " ";
+  content: ' ';
   display: block;
   position: absolute;
   width: 7px;

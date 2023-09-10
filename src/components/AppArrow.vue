@@ -1,20 +1,16 @@
 <template>
   <div class="arrow">
-    <div class="arrow__body">
-      &#8593;
-    </div>
+    <div class="arrow__body">&#8593;</div>
   </div>
 </template>
 
-<script lang='ts'>
-
+<script lang="ts">
 export default {
   name: 'AppArrow'
 }
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .arrow {
   position: absolute;
   width: 70px;

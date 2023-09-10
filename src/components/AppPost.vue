@@ -8,22 +8,28 @@
       </div>
       <div class="postblock__container">
         <div class="postblock__p" @click="isOpenP = !isOpenP">
-          <p v-if="!isOpenP">
-            {{ post.paragraph.slice(0, 200) }}.....
-          </p>
+          <p v-if="!isOpenP">{{ post.paragraph.slice(0, 200) }}.....</p>
           <p v-if="isOpenP">
             {{ post.paragraph }}
           </p>
         </div>
-        <div class="postblock__preview" @click="updateLoaders" v-if="post.preview">
+        <div
+          class="postblock__preview"
+          @click="updateLoaders"
+          v-if="post.preview"
+        >
           <router-link class="postblock__preview-a" :to="'/post/' + post.id">
-            <img :src="`${post.preview}`" alt="">
+            <img :src="`${post.preview}`" alt="" />
           </router-link>
         </div>
         <div class="postblock__bottom">
           <div class="postblock__tags">
             <span>Tags:</span>
-            <div class="postblock__tags-tag" v-for="tag  in  post.tags " :key="tag">
+            <div
+              class="postblock__tags-tag"
+              v-for="tag in post.tags"
+              :key="tag"
+            >
               {{ tag }}
             </div>
           </div>
@@ -34,10 +40,20 @@
             <div class="postblock__stats-date">
               {{ post.publishDate }}
             </div>
-            <div class="postblock__stats-like" @click="isLiked = !isLiked, isDisliked = false">
-              <AppLike :class="{ 'like-btn': isLiked }" type="like" :status="isLiked" />
+            <div
+              class="postblock__stats-like"
+              @click=";(isLiked = !isLiked), (isDisliked = false)"
+            >
+              <AppLike
+                :class="{ 'like-btn': isLiked }"
+                type="like"
+                :status="isLiked"
+              />
             </div>
-            <div class="postblock__stats-dis" @click="isDisliked = !isDisliked, isLiked = false">
+            <div
+              class="postblock__stats-dis"
+              @click=";(isDisliked = !isDisliked), (isLiked = false)"
+            >
               <AppLike type="dislike" :status="isDisliked" />
             </div>
           </div>
@@ -47,7 +63,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import store from '@/store'
 import AppLike from './AppLike.vue'
 
@@ -68,10 +84,9 @@ export default {
   },
   components: { AppLike }
 }
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .like-btn {
   border-radius: 50px;
   width: 1px;

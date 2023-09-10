@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import AppModal from './components/AppModal.vue'
 import AppNotification from './components/AppNotification.vue'
 import TheNavbar from './components/TheNavbar.vue'
@@ -28,10 +28,9 @@ export default {
     }
   }
 }
-
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 
 * {

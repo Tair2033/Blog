@@ -1,19 +1,17 @@
 <template>
   <div class="post-image">
-    <img :src="item.link" alt="">
+    <img :src="item.link" alt="" />
   </div>
 </template>
 
-<script lang='ts'>
-
+<script lang="ts">
 export default {
   name: 'AppImage',
   props: ['item']
 }
-
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 .post-image {
   max-width: auto;
   max-height: 700px;

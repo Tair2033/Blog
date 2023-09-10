@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import store from '@/store'
 
 export default {
@@ -25,10 +25,9 @@ export default {
     }
   }
 }
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .notif {
   background-color: rgb(8, 10, 47);
   z-index: 20;

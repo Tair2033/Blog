@@ -8,27 +8,39 @@
           </div>
 
           <div v-if="!loadingStatus">
-            <div class="fresh__filter" :class="{ 'toggle-filter': isListActive }">
+            <div
+              class="fresh__filter"
+              :class="{ 'toggle-filter': isListActive }"
+            >
               <div class="fresh__filter-title">
                 <i class="fa-solid fa-calendar-plus"></i>
-                <span>
-                  Last
-                </span>
+                <span> Last </span>
               </div>
               <div :class="{ 'toggle-list': isListActive }" class="fresh__flex">
-                <div class="fresh__filter-item" @click="toggleFilter(item, index)"
-                  :class="{ 'active-filter': index == activeFilter }" v-for="( item, index ) in  filterItems "
-                  :key="index">
+                <div
+                  class="fresh__filter-item"
+                  @click="toggleFilter(item, index)"
+                  :class="{ 'active-filter': index == activeFilter }"
+                  v-for="(item, index) in filterItems"
+                  :key="index"
+                >
                   {{ item }}
                 </div>
               </div>
-              <div class="fresh__btn toggle-btn" :class="{ 'active-arrow': isListActive }"
-                @click="isListActive = !isListActive">
+              <div
+                class="fresh__btn toggle-btn"
+                :class="{ 'active-arrow': isListActive }"
+                @click="isListActive = !isListActive"
+              >
                 <i class="fa-solid fa-chevron-down"></i>
               </div>
             </div>
             <div class="fresh__box">
-              <AppPost v-for="( post, index ) in  posts " :key="index" :post="post" />
+              <AppPost
+                v-for="(post, index) in posts"
+                :key="index"
+                :post="post"
+              />
             </div>
           </div>
         </div>
@@ -37,7 +49,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import AppLoader from '@/components/AppLoader.vue'
 import AppPost from '@/components/AppPost.vue'
 import store from '@/store'
@@ -51,13 +63,7 @@ export default defineComponent({
       posts,
       isListActive: true,
       activeFilter: 0,
-      filterItems: [
-        'Hour',
-        'Day',
-        'Week',
-        'Month',
-        'Year'
-      ]
+      filterItems: ['Hour', 'Day', 'Week', 'Month', 'Year']
     }
   },
   components: { AppLoader, AppPost },
@@ -78,10 +84,9 @@ export default defineComponent({
     }
   }
 })
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .fresh__container {
   max-width: 1000px;
   margin: 0 auto;
@@ -182,7 +187,6 @@ export default defineComponent({
   &__box {
     padding-top: 30px;
   }
-
 }
 
 @media (max-width: 580px) {

@@ -3,11 +3,8 @@
     <div class="infoblocks__body">
       <div class="infoblocks__container">
         <div class="infoblocks__content">
-
           <div class="infoblocks__posts">
-            <div class="infoblocks__title">
-              Fresh Posts
-            </div>
+            <div class="infoblocks__title">Fresh Posts</div>
 
             <AppPost v-for="(post, index) in posts" :post="post" :key="index" />
 
@@ -19,9 +16,7 @@
           </div>
 
           <div class="infoblocks__news">
-            <div class="infoblocks__news-title">
-              News
-            </div>
+            <div class="infoblocks__news-title">News</div>
 
             <div class="infoblocks__newsblock">
               <AppNews v-for="section in news" :news="section" :key="section" />
@@ -37,7 +32,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import AppNews from '../AppNews.vue'
 import AppPost from '../AppPost.vue'
 
@@ -54,10 +49,9 @@ export default {
   props: ['posts', 'news'],
   components: { AppPost, AppNews }
 }
-
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 .infoblocks {
   display: flex;
 

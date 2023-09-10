@@ -3,7 +3,9 @@
     <div class="modal">
       <div class="modal__content">
         <div class="modal__container">
-          <div class="modal__close" @click.stop.prevent="toggleModalStatus"> &#10008;</div>
+          <div class="modal__close" @click.stop.prevent="toggleModalStatus">
+            &#10008;
+          </div>
           <div class="modal__cat">
             <div class="cat">
               <div class="ear ear--left"></div>
@@ -27,27 +29,33 @@
             <form action="#" v-if="!isLogin">
               <div class="row">
                 <i class="fas fa-user"></i>
-                <input type="text" placeholder="Email or Phone" required>
+                <input type="text" placeholder="Email or Phone" required />
               </div>
               <div class="row">
                 <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Password" required />
               </div>
               <div class="pass"><a href="#">Forgot password?</a></div>
               <div class="row button">
-                <input type="button" class="submit-btn" @focus="login" value="Login">
+                <input
+                  type="button"
+                  class="submit-btn"
+                  @focus="login"
+                  value="Login"
+                />
               </div>
-              <div class="signup-link">Not a member? <a href="#">Signup now</a></div>
+              <div class="signup-link">
+                Not a member? <a href="#">Signup now</a>
+              </div>
             </form>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import store from '@/store'
 import AppLoader from './AppLoader.vue'
@@ -70,9 +78,11 @@ export default defineComponent({
     toggleModalStatus(e: Event) {
       const $node = e.target as HTMLElement
       const body = document.querySelector('body')
-      if ($node.classList.contains('modal__close') ||
+      if (
+        $node.classList.contains('modal__close') ||
         $node.classList.contains('modal__wrapper') ||
-        $node.classList.contains('modal')) {
+        $node.classList.contains('modal')
+      ) {
         body?.classList.toggle('active-modal')
         store.dispatch('changeModalStatus')
       }
@@ -85,10 +95,9 @@ export default defineComponent({
   },
   components: { AppLoader }
 })
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 $color-black: #161616;
@@ -256,31 +265,31 @@ $size: 170px;
 
   @keyframes look-around {
     0% {
-      transform: translate(0)
+      transform: translate(0);
     }
 
     5% {
-      transform: translate(50%, -25%)
+      transform: translate(50%, -25%);
     }
 
     10% {
-      transform: translate(50%, -25%)
+      transform: translate(50%, -25%);
     }
 
     15% {
-      transform: translate(-100%, -25%)
+      transform: translate(-100%, -25%);
     }
 
     20% {
-      transform: translate(-100%, -25%)
+      transform: translate(-100%, -25%);
     }
 
     25% {
-      transform: translate(0, 0)
+      transform: translate(0, 0);
     }
 
     100% {
-      transform: translate(0, 0)
+      transform: translate(0, 0);
     }
   }
 

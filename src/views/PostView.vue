@@ -13,11 +13,21 @@
               </div>
               <div class="content__titlebox-buttons">
                 <div class="star" @click="bookmark">
-                  <i :class="{ 'active-bookmark': isBookmarked }" class="fa-solid fa-star"></i>
+                  <i
+                    :class="{ 'active-bookmark': isBookmarked }"
+                    class="fa-solid fa-star"
+                  ></i>
                 </div>
                 <div class="setting" @click="settings">
-                  <i :class="{ 'active-settings': isSettings }" class="fa-solid fa-ellipsis"></i>
-                  <AppPopover ref="pop" v-if="isSettings" :content="popoverSettings" />
+                  <i
+                    :class="{ 'active-settings': isSettings }"
+                    class="fa-solid fa-ellipsis"
+                  ></i>
+                  <AppPopover
+                    ref="pop"
+                    v-if="isSettings"
+                    :content="popoverSettings"
+                  />
                 </div>
               </div>
             </div>
@@ -25,11 +35,13 @@
               {{ post?.paragraph }}
             </div>
             <div class="content__preview-top">
-              <div class=" content__tags">
-                <div class="content__tags-title">
-                  Tags:
-                </div>
-                <div class="content__tags-tag" v-for="tag in post?.tags" :key="tag">
+              <div class="content__tags">
+                <div class="content__tags-title">Tags:</div>
+                <div
+                  class="content__tags-tag"
+                  v-for="tag in post?.tags"
+                  :key="tag"
+                >
                   {{ tag }}
                 </div>
               </div>
@@ -44,15 +56,22 @@
               </div>
             </div>
             <div class="content__preview">
-              <img :src="post?.preview" alt="">
+              <img :src="post?.preview" alt="" />
             </div>
           </div>
 
           <div class="content__main">
-            <div class="content__main-item" v-for="item in post.content" :key="item">
+            <div
+              class="content__main-item"
+              v-for="item in post.content"
+              :key="item"
+            >
               <AppQuote v-if="item?.sectionType == 'quote'" :item="item" />
 
-              <AppDefaultText v-if="item?.sectionType == 'text'" :text="item.text" />
+              <AppDefaultText
+                v-if="item?.sectionType == 'text'"
+                :text="item.text"
+              />
 
               <AppImage v-if="item?.sectionType == 'image'" :item="item" />
             </div>
@@ -63,7 +82,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import AppLoader from '@/components/AppLoader.vue'
 import AppQuote from '@/components/PostUI/AppQuote.vue'
 import AppDefaultText from '@/components/PostUI/AppDefaultText.vue'
@@ -136,10 +155,9 @@ export default defineComponent({
   },
   components: { AppLoader, AppQuote, AppDefaultText, AppImage, AppPopover }
 })
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .active-bookmark {
   color: rgb(248, 224, 7);
   box-shadow: 1px 5px 1px 1px none;

@@ -4,16 +4,14 @@
   </div>
 </template>
 
-<script lang='ts'>
-
+<script lang="ts">
 export default {
   name: 'AppDefaultText',
   props: ['text']
 }
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .default {
   margin-bottom: 30px;
   font-size: calc(15px + 5 * (100vw / 1280));

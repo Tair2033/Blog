@@ -1,9 +1,17 @@
 <template>
-  <div class="popover-wrapper" :style="{ top: content.position.y + 'px', left: content.position.x + 'px' }">
+  <div
+    class="popover-wrapper"
+    :style="{ top: content.position.y + 'px', left: content.position.x + 'px' }"
+  >
     <div class="popover">
       <div class="popover__body">
         <div class="popover__list" :v-if="content.list">
-          <div class="popover__list-item" @click="itemAction(item)" v-for="item in content.list" :key="item">
+          <div
+            class="popover__list-item"
+            @click="itemAction(item)"
+            v-for="item in content.list"
+            :key="item"
+          >
             {{ item }}
           </div>
         </div>
@@ -12,7 +20,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import store from '@/store'
 
 export default {
@@ -27,10 +35,9 @@ export default {
   },
   props: ['content']
 }
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .popover-wrapper {
   z-index: 40;
   position: absolute;
