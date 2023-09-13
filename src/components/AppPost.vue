@@ -1,34 +1,48 @@
 <template>
   <div class="postblock">
     <div class="postblock__body">
-      <div class="postblock__title" @click="updateLoaders">
+      <div
+        class="postblock__title"
+        @click="updateLoaders"
+      >
         <router-link :to="'/post/' + post.id">
           {{ post.title }}
         </router-link>
       </div>
       <div class="postblock__container">
-        <div class="postblock__p" @click="isOpenP = !isOpenP">
-          <p v-if="!isOpenP">{{ post.paragraph.slice(0, 200) }}.....</p>
+        <div
+          class="postblock__p"
+          @click="isOpenP = !isOpenP"
+        >
+          <p v-if="!isOpenP">
+            {{ post.paragraph.slice(0, 200) }}.....
+          </p>
           <p v-if="isOpenP">
             {{ post.paragraph }}
           </p>
         </div>
         <div
+          v-if="post.preview"
           class="postblock__preview"
           @click="updateLoaders"
-          v-if="post.preview"
         >
-          <router-link class="postblock__preview-a" :to="'/post/' + post.id">
-            <img :src="`${post.preview}`" alt="" />
+          <router-link
+            class="postblock__preview-a"
+            :to="'/post/' + post.id"
+          >
+            <img
+              :src="`${post.preview}`"
+              alt=""
+            >
           </router-link>
         </div>
         <div class="postblock__bottom">
           <div class="postblock__tags">
             <span>Tags:</span>
             <div
-              class="postblock__tags-tag"
               v-for="tag in post.tags"
               :key="tag"
+              class="postblock__tags-tag"
             >
               {{ tag }}
             </div>
@@ -54,7 +68,10 @@
               class="postblock__stats-dis"
               @click=";(isDisliked = !isDisliked), (isLiked = false)"
             >
-              <AppLike type="dislike" :status="isDisliked" />
+              <AppLike
+                type="dislike"
+                :status="isDisliked"
+              />
             </div>
           </div>
         </div>
@@ -69,6 +86,17 @@ import AppLike from './AppLike.vue'
 
 export default {
   name: 'AppPost',
+  components: { AppLike },
+  props: {
+    post: {
+      type: Object,
+      default: new Object() 
+    },
+    id: {
+      type: Number,
+      default: 0
+    } 
+  },
   data: () => {
     return {
       isOpenP: false,
@@ -76,13 +104,11 @@ export default {
       isDisliked: false
     }
   },
-  props: ['post', 'id'],
   methods: {
     updateLoaders() {
       store.dispatch('updateAllLoaders')
     }
-  },
-  components: { AppLike }
+  }
 }
 </script>
 
@@ -191,33 +217,35 @@ export default {
   }
 
   &__preview-a {
-    border-radius: 15px;
     z-index: 10;
     width: auto;
     overflow: hidden;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    max-height: 300px;
   }
 
   &__preview-a img {
     z-index: 10;
-    max-width: 100%;
+    width: 100%;
+    height: auto;
     filter: brightness(87%);
     object-fit: cover;
+    object-position: top;
     transition: all 0.4s;
   }
 
   &__bottom {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 20px;
+    flex-wrap: wrap;
   }
 
   &__tags {
     display: flex;
     align-items: center;
+    margin-right: 20px;
   }
 
   &__tags span {

@@ -4,9 +4,15 @@
       <div class="infoblocks__container">
         <div class="infoblocks__content">
           <div class="infoblocks__posts">
-            <div class="infoblocks__title">Fresh Posts</div>
+            <div class="infoblocks__title">
+              Fresh Posts
+            </div>
 
-            <AppPost v-for="(post, index) in posts" :post="post" :key="index" />
+            <AppPost
+              v-for="(post, index) in posts"
+              :key="index"
+              :post="post"
+            />
 
             <div class="infoblocks__redirect">
               <router-link to="/new-posts">
@@ -16,10 +22,16 @@
           </div>
 
           <div class="infoblocks__news">
-            <div class="infoblocks__news-title">News</div>
+            <div class="infoblocks__news-title">
+              News
+            </div>
 
             <div class="infoblocks__newsblock">
-              <AppNews v-for="section in news" :news="section" :key="section" />
+              <AppNews
+                v-for="section in news"
+                :key="section"
+                :news="section"
+              />
 
               <div class="infoblocks__news-subscribe">
                 <AppNews :subscribe="subscribe" />
@@ -33,11 +45,13 @@
 </template>
 
 <script lang="ts">
-import AppNews from '../AppNews.vue'
+import AppNews from './AppNews.vue'
 import AppPost from '../AppPost.vue'
 
 export default {
   name: 'TheHomePosts',
+  components: { AppPost, AppNews },
+  props: ['posts', 'news'],
   data: () => {
     return {
       subscribe: {
@@ -45,9 +59,7 @@ export default {
         text: 'No spam. Just the latest releases and tips, interesting artiles, and exclusive interviews in your inbox every week.'
       }
     }
-  },
-  props: ['posts', 'news'],
-  components: { AppPost, AppNews }
+  }
 }
 </script>
 

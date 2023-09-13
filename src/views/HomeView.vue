@@ -1,14 +1,23 @@
 <template>
   <div class="wrapper">
-    <div class="wrapper__loader" v-if="changeHomeLoadingStatus">
+    <div
+      v-if="changeHomeLoadingStatus"
+      class="wrapper__loader"
+    >
       <AppLoader />
     </div>
-    <div class="home" v-if="!changeHomeLoadingStatus">
+    <div
+      v-if="!changeHomeLoadingStatus"
+      class="home"
+    >
       <div class="home__body">
         <div class="home__container">
           <div class="home__content">
-            <TheHeaderPost :mainPost="mainPost" />
-            <TheHomePosts :posts="posts" :news="news" />
+            <TheHeaderPost :main-post="mainPost" />
+            <TheHomePosts
+              :posts="posts"
+              :news="news"
+            />
           </div>
         </div>
       </div>
@@ -25,6 +34,7 @@ import AppLoader from '@/components/AppLoader.vue'
 
 export default {
   name: 'HomeView',
+  components: { TheHeaderPost, TheHomePosts, AppLoader },
   data: function () {
     return {
       mainPost: main,
@@ -32,18 +42,17 @@ export default {
       news
     }
   },
-  beforeMount() {
-    const timeout = setTimeout(() => {
-      store.dispatch('changeHomeLoadingStatus')
-      clearTimeout(timeout)
-    }, 700)
-  },
   computed: {
     changeHomeLoadingStatus() {
       return store.getters.isLoadingHome
     }
   },
-  components: { TheHeaderPost, TheHomePosts, AppLoader }
+  beforeMount() {
+    const timeout = setTimeout(() => {
+      store.dispatch('changeHomeLoadingStatus')
+      clearTimeout(timeout)
+    }, 700)
+  }
 }
 </script>
 <style lang="scss" scoped>

@@ -3,7 +3,10 @@
     <div class="fresh__container">
       <div class="fresh__body">
         <div class="fresh__content">
-          <div class="fresh__loader" v-if="loadingStatus">
+          <div
+            v-if="loadingStatus"
+            class="fresh__loader"
+          >
             <AppLoader />
           </div>
 
@@ -13,16 +16,19 @@
               :class="{ 'toggle-filter': isListActive }"
             >
               <div class="fresh__filter-title">
-                <i class="fa-solid fa-calendar-plus"></i>
+                <i class="fa-solid fa-calendar-plus" />
                 <span> Last </span>
               </div>
-              <div :class="{ 'toggle-list': isListActive }" class="fresh__flex">
+              <div
+                :class="{ 'toggle-list': isListActive }"
+                class="fresh__flex"
+              >
                 <div
-                  class="fresh__filter-item"
-                  @click="toggleFilter(item, index)"
-                  :class="{ 'active-filter': index == activeFilter }"
                   v-for="(item, index) in filterItems"
                   :key="index"
+                  class="fresh__filter-item"
+                  :class="{ 'active-filter': index == activeFilter }"
+                  @click="toggleFilter(item, index)"
                 >
                   {{ item }}
                 </div>
@@ -32,7 +38,7 @@
                 :class="{ 'active-arrow': isListActive }"
                 @click="isListActive = !isListActive"
               >
-                <i class="fa-solid fa-chevron-down"></i>
+                <i class="fa-solid fa-chevron-down" />
               </div>
             </div>
             <div class="fresh__box">
@@ -58,6 +64,7 @@ import { posts } from '../mocks/data'
 
 export default defineComponent({
   name: 'NewPostsView',
+  components: { AppLoader, AppPost },
   data: () => {
     return {
       posts,
@@ -66,17 +73,16 @@ export default defineComponent({
       filterItems: ['Hour', 'Day', 'Week', 'Month', 'Year']
     }
   },
-  components: { AppLoader, AppPost },
+  computed: {
+    loadingStatus(): boolean {
+      return store.getters.isLoadingNew
+    }
+  },
   beforeMount() {
     const timeout = setTimeout(() => {
       store.dispatch('changeNewLoadingStatus')
       clearTimeout(timeout)
     }, 700)
-  },
-  computed: {
-    loadingStatus(): boolean {
-      return store.getters.isLoadingNew
-    }
   },
   methods: {
     toggleFilter(item: string, index: number) {

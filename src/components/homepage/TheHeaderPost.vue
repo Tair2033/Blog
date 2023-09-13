@@ -3,7 +3,10 @@
     <div class="header__container">
       <div class="header__content header">
         <div class="header__left">
-          <img src="/images/header-element.png" alt="" />
+          <img
+            src="/images/header-element.png"
+            alt=""
+          >
         </div>
         <div class="header__info">
           <div class="header__info-top">
@@ -21,13 +24,16 @@
 
           <div class="header__tags">
             <div
-              class="header__tags-tag"
               v-for="tag in mainPost.tags"
               :key="tag"
+              class="header__tags-tag"
             >
               {{ tag }}
             </div>
-            <div class="header__tags-tag" v-if="mainPost.readTime !== ''">
+            <div
+              v-if="mainPost.readTime !== ''"
+              class="header__tags-tag"
+            >
               {{ mainPost.readTime }}
             </div>
           </div>
@@ -36,37 +42,50 @@
 
       <div class="header__postinfo">
         <div class="header__preview">
-          <img :src="mainPost.preview" alt="" />
+          <img
+            :src="mainPost.preview"
+            alt=""
+          >
         </div>
 
         <div class="header__post post">
           <div class="post__leftside">
             <div class="post__username">
-              <div class="post__username-text italic">Written by</div>
+              <div class="post__username-text italic">
+                Written by
+              </div>
               <div class="post__username-name">
                 {{ mainPost.author }}
               </div>
             </div>
             <div class="post__publish">
-              <div class="post__publish-text italic">Published on</div>
+              <div class="post__publish-text italic">
+                Published on
+              </div>
               <div class="post__publish-date">
                 {{ mainPost.publishDate }}
               </div>
             </div>
           </div>
           <div class="post_rightside">
-            <div class="post__copy" @click="isCopy = !isCopy">
-              <i class="fa-regular fa-clone"></i>
+            <div
+              class="post__copy"
+              @click="isCopy = !isCopy"
+            >
+              <i class="fa-regular fa-clone" />
               <span v-if="!isCopy">Copy Link</span>
               <span v-if="isCopy">Copied!</span>
             </div>
             <div
-              class="post__social"
               v-for="social in mainPost.socialLinks"
               :key="social.id"
+              class="post__social"
             >
               <a :href="social.link">
-                <img :src="`/images/${social.icon}`" alt="" />
+                <img
+                  :src="`/images/${social.icon}`"
+                  alt=""
+                >
               </a>
             </div>
           </div>
@@ -79,12 +98,12 @@
 <script lang="ts">
 export default {
   name: 'TheHeaderPost',
+  props: ['mainPost'],
   data: () => {
     return {
       isCopy: false
     }
-  },
-  props: ['mainPost']
+  }
 }
 </script>
 

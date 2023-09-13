@@ -2,7 +2,10 @@
   <div class="app">
     <TheNavbar />
     <AppModal v-if="isModal" />
-    <AppNotification :text="getNotifText" :type="getNotifType" />
+    <AppNotification
+      :text="getNotifText"
+      :type="getNotifType"
+    />
     <router-view />
   </div>
 </template>

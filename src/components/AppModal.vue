@@ -78,10 +78,12 @@ export default defineComponent({
     toggleModalStatus(e: Event) {
       const $node = e.target as HTMLElement
       const body = document.querySelector('body')
+      const contains = (selector: string) => $node.classList.contains(selector)
+
       if (
-        $node.classList.contains('modal__close') ||
-        $node.classList.contains('modal__wrapper') ||
-        $node.classList.contains('modal')
+        contains('modal__close') ||
+        contains('modal__wrapper') ||
+        contains('modal')
       ) {
         body?.classList.toggle('active-modal')
         store.dispatch('changeModalStatus')

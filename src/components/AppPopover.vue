@@ -5,12 +5,15 @@
   >
     <div class="popover">
       <div class="popover__body">
-        <div class="popover__list" :v-if="content.list">
+        <div
+          class="popover__list"
+          :v-if="content.list"
+        >
           <div
-            class="popover__list-item"
-            @click="itemAction(item)"
             v-for="item in content.list"
             :key="item"
+            class="popover__list-item"
+            @click="itemAction(item)"
           >
             {{ item }}
           </div>
@@ -25,6 +28,12 @@ import store from '@/store'
 
 export default {
   name: 'AppPopover',
+  props: {
+    content: {
+      type: Object,
+      default: new Object()
+    }
+  },
   methods: {
     itemAction(item: string) {
       if (item === 'Exit') {
@@ -32,8 +41,7 @@ export default {
         location.reload()
       }
     }
-  },
-  props: ['content']
+  }
 }
 </script>
 

@@ -1,9 +1,15 @@
 <template>
   <div class="wrapper">
-    <div class="wrapper__loader" v-if="getLoaderPostStatus">
+    <div
+      v-if="getLoaderPostStatus"
+      class="wrapper__loader"
+    >
       <AppLoader />
     </div>
-    <div class="content" v-if="!getLoaderPostStatus">
+    <div
+      v-if="!getLoaderPostStatus"
+      class="content"
+    >
       <div class="content__body">
         <div class="container">
           <div class="content__top">
@@ -12,20 +18,26 @@
                 {{ post?.title }}
               </div>
               <div class="content__titlebox-buttons">
-                <div class="star" @click="bookmark">
+                <div
+                  class="star"
+                  @click="bookmark"
+                >
                   <i
                     :class="{ 'active-bookmark': isBookmarked }"
                     class="fa-solid fa-star"
-                  ></i>
+                  />
                 </div>
-                <div class="setting" @click="settings">
+                <div
+                  class="setting"
+                  @click="settings"
+                >
                   <i
                     :class="{ 'active-settings': isSettings }"
                     class="fa-solid fa-ellipsis"
-                  ></i>
+                  />
                   <AppPopover
-                    ref="pop"
                     v-if="isSettings"
+                    ref="pop"
                     :content="popoverSettings"
                   />
                 </div>
@@ -36,11 +48,13 @@
             </div>
             <div class="content__preview-top">
               <div class="content__tags">
-                <div class="content__tags-title">Tags:</div>
+                <div class="content__tags-title">
+                  Tags:
+                </div>
                 <div
-                  class="content__tags-tag"
                   v-for="tag in post?.tags"
                   :key="tag"
+                  class="content__tags-tag"
                 >
                   {{ tag }}
                 </div>
@@ -56,24 +70,33 @@
               </div>
             </div>
             <div class="content__preview">
-              <img :src="post?.preview" alt="" />
+              <img
+                :src="post?.preview"
+                alt=""
+              >
             </div>
           </div>
 
           <div class="content__main">
             <div
-              class="content__main-item"
               v-for="item in post.content"
               :key="item"
+              class="content__main-item"
             >
-              <AppQuote v-if="item?.sectionType == 'quote'" :item="item" />
+              <AppQuote
+                v-if="item?.sectionType == 'quote'"
+                :item="item"
+              />
 
               <AppDefaultText
                 v-if="item?.sectionType == 'text'"
                 :text="item.text"
               />
 
-              <AppImage v-if="item?.sectionType == 'image'" :item="item" />
+              <AppImage
+                v-if="item?.sectionType == 'image'"
+                :item="item"
+              />
             </div>
           </div>
         </div>
@@ -95,6 +118,7 @@ import AppPopover from '@/components/AppPopover.vue'
 
 export default defineComponent({
   name: 'PostView',
+  components: { AppLoader, AppQuote, AppDefaultText, AppImage, AppPopover },
   data: function () {
     return {
       popoverSettings: {
@@ -108,12 +132,6 @@ export default defineComponent({
       post: this.getPost()
     }
   },
-  beforeMount() {
-    const timeout = setTimeout(() => {
-      store.dispatch('changePostLoadingStatus')
-      clearTimeout(timeout)
-    }, 1200)
-  },
   computed: {
     getLoaderPostStatus() {
       return store.getters.isLoadingPost
@@ -124,6 +142,12 @@ export default defineComponent({
     isSettings() {
       return store.getters.isSettings
     }
+  },
+  beforeMount() {
+    const timeout = setTimeout(() => {
+      store.dispatch('changePostLoadingStatus')
+      clearTimeout(timeout)
+    }, 1200)
   },
   methods: {
     settings(e: Event) {
@@ -152,8 +176,7 @@ export default defineComponent({
 
       return null
     }
-  },
-  components: { AppLoader, AppQuote, AppDefaultText, AppImage, AppPopover }
+  }
 })
 </script>
 

@@ -1,6 +1,9 @@
 <template>
   <div class="post-image">
-    <img :src="item.link" alt="" />
+    <img
+      :src="item.link"
+      alt=""
+    >
   </div>
 </template>
 

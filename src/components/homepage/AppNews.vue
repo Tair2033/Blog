@@ -1,7 +1,10 @@
 <template>
   <div class="news">
     <div class="news__body">
-      <div class="news__wrapper" v-if="!subscribe">
+      <div
+        v-if="!subscribe"
+        class="news__wrapper"
+      >
         <div class="news__title">
           {{ news?.title }}
         </div>
@@ -13,7 +16,10 @@
         </div>
       </div>
 
-      <div class="news__subscribe" v-if="subscribe">
+      <div
+        v-if="subscribe"
+        class="news__subscribe"
+      >
         <div class="news__subscribe-title">
           {{ subscribe?.title }}
         </div>
@@ -21,10 +27,18 @@
           {{ subscribe?.text }}
         </div>
         <div class="news__subscribe-input">
-          <input type="email" ref="email" />
+          <input
+            ref="email"
+            type="email"
+          >
         </div>
         <div class="news__subscribe-button">
-          <button @click="changeNotif" type="button">Subscribe</button>
+          <button
+            type="button"
+            @click="changeNotif"
+          >
+            Subscribe
+          </button>
         </div>
       </div>
     </div>
@@ -37,7 +51,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'AppNews',
-  props: ['news', 'subscribe'],
+  props: ['subscribe', 'news'],
   methods: {
     changeNotif() {
       const inputElement = this.$refs.email as HTMLInputElement

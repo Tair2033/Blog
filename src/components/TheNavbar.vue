@@ -6,16 +6,19 @@
           <div class="navbar__main">
             <div class="navbar__logo logo">
               <router-link to="/">
-                <img src="/images/blog.png" alt="logo" />
+                <img
+                  src="/images/blog.png"
+                  alt="logo"
+                >
               </router-link>
             </div>
 
             <ul class="navbar__menu burger">
               <li
-                class="navbar__menu-item"
-                @click="updateLoaders"
                 v-for="(item, index) in navbarItems"
                 :key="index"
+                class="navbar__menu-item"
+                @click="updateLoaders"
               >
                 <routerLink :to="item">
                   {{ index }}
@@ -25,28 +28,44 @@
           </div>
 
           <div class="navbar__right">
-            <div class="navbar__burger" @click="isBurger = !isBurger">
-              <i class="fa-solid fa-bars"></i>
+            <div
+              class="navbar__burger"
+              @click="isBurger = !isBurger"
+            >
+              <i class="fa-solid fa-bars" />
             </div>
 
-            <div class="navbar__user" v-if="isLogin" @click="toggleUserPopover">
+            <div
+              v-if="isLogin"
+              class="navbar__user"
+              @click="toggleUserPopover"
+            >
               <div class="navbar__preview">
-                <img :src="user.preview" alt="" />
+                <img
+                  :src="user.preview"
+                  alt=""
+                >
               </div>
               <div class="navbar__nickname">
                 {{ user.nickname }}
               </div>
-              <AppPopover v-if="isUserPopover" :content="userItems" />
+              <AppPopover
+                v-if="isUserPopover"
+                :content="userItems"
+              />
             </div>
 
-            <div class="navbar__login" v-if="!isLogin">
+            <div
+              v-if="!isLogin"
+              class="navbar__login"
+            >
               <button
                 type="button"
-                @click="toggleModalStatus"
                 class="navbar__login-btn"
+                @click="toggleModalStatus"
               >
                 <span>Log in</span>
-                <i class="exit fa-solid fa-right-to-bracket"></i>
+                <i class="exit fa-solid fa-right-to-bracket" />
               </button>
             </div>
           </div>
@@ -54,13 +73,16 @@
       </div>
     </div>
 
-    <div class="navbar__adaptive" v-if="isBurger">
+    <div
+      v-if="isBurger"
+      class="navbar__adaptive"
+    >
       <ul class="navbar__menu-active">
         <li
-          class="navbar__menu-item-active"
-          @click="navbarItemClick"
           v-for="(item, index) in navbarItems"
           :key="index"
+          class="navbar__menu-item-active"
+          @click="navbarItemClick"
         >
           <routerLink :to="item">
             {{ index }}
@@ -79,6 +101,7 @@ import AppPopover from './AppPopover.vue'
 
 export default defineComponent({
   name: 'TheNavbar',
+  components: { AppPopover },
   data: () => {
     return {
       user,
@@ -127,8 +150,7 @@ export default defineComponent({
       body?.classList.toggle('active-modal')
       store.dispatch('changeModalStatus')
     }
-  },
-  components: { AppPopover }
+  }
 })
 </script>
 
@@ -262,6 +284,8 @@ a {
   &__preview img {
     object-fit: contain;
     height: auto;
+    min-height: 35px;
+    min-width: 35px;
   }
 
   .navbar__nickname {

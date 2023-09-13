@@ -5,23 +5,29 @@
         <div class="popular__box">
           <div class="popular__filter">
             <div
-              class="popular__filter-item"
               v-for="(item, index) in filterItems"
               :key="index"
+              class="popular__filter-item"
             >
-              <img :src="`/images/${item}`" alt="logo" />
+              <img
+                :src="`/images/${item}`"
+                alt="logo"
+              >
               <span>{{ index }}</span>
             </div>
           </div>
           <div class="popular__content">
-            <div class="popular__loader" v-if="loadingStatus">
+            <div
+              v-if="loadingStatus"
+              class="popular__loader"
+            >
               <AppLoader />
             </div>
             <div v-if="!loadingStatus">
               <AppPost
                 v-for="(post, index) in posts"
-                :post="post"
                 :key="index"
+                :post="post"
               />
             </div>
           </div>
@@ -39,6 +45,7 @@ import store from '@/store'
 
 export default {
   name: 'PolulalView',
+  components: { AppPost, AppLoader },
   data: () => {
     return {
       posts,
@@ -52,19 +59,18 @@ export default {
       }
     }
   },
+  computed: {
+    loadingStatus(): boolean {
+      return store.getters.isLodingPopular
+    }
+  },
   beforeMount() {
     const timeout = setTimeout(() => {
       store.dispatch('changePopularLoadingStatus')
       clearTimeout(timeout)
     }, 700)
   },
-  computed: {
-    loadingStatus(): boolean {
-      return store.getters.isLodingPopular
-    }
-  },
-  methods: {},
-  components: { AppPost, AppLoader }
+  methods: {}
 }
 </script>
 

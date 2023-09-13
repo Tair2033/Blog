@@ -1,8 +1,8 @@
 <template>
   <div>
     <svg
-      class="hand"
       v-if="!isTypeButton"
+      class="hand"
       :class="{ like: !isTypeButton, 'active-like': status }"
       width="27px"
       height="27px"
@@ -14,8 +14,8 @@
       />
     </svg>
     <svg
-      class="hand"
       v-if="isTypeButton"
+      class="hand"
       :class="{ dislike: isTypeButton, 'active-dislike': status }"
       width="25px"
       height="25px"
@@ -37,8 +37,14 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'AppLike',
   props: {
-    type: String,
-    status: Boolean
+    type: {
+      type: String,
+      default: ''
+    },
+    status: {
+      type: Boolean,
+      default: new Boolean()
+    }
   },
   computed: {
     isTypeButton() {

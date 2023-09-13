@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="notif" v-if="notifType">
+    <div
+      v-if="notifType"
+      class="notif"
+    >
       <h3>
         {{ text }}
       </h3>
@@ -13,11 +16,14 @@ import store from '@/store'
 
 export default {
   name: 'AppNotification',
+  props: {
+    text: {
+      type: String,
+      default: ''
+    }
+  },
   data: () => {
     return {}
-  },
-  props: {
-    text: String
   },
   computed: {
     notifType(): string {

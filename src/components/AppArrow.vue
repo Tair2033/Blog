@@ -1,6 +1,8 @@
 <template>
   <div class="arrow">
-    <div class="arrow__body">&#8593;</div>
+    <div class="arrow__body">
+      &#8593;
+    </div>
   </div>
 </template>
 

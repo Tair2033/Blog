@@ -1,14 +1,23 @@
 <template>
   <div class="wrapper-quote">
-    <div class="quote">&#8220;{{ item.text }}&#8221;</div>
-    <div class="author">&#8212; {{ item.quoteAuthor }}</div>
+    <div class="quote">
+      &#8220;{{ item.text }}&#8221;
+    </div>
+    <div class="author">
+      &#8212; {{ item.quoteAuthor }}
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 export default {
   name: 'AppQuote',
-  props: ['item']
+  props: {
+    item: {
+      type: Object,
+      default: new Object()
+    }
+  }
 }
 </script>
 

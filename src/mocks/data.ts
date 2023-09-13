@@ -4,7 +4,7 @@ type social = {
   link: string
 }
 
-export interface MainPost {
+interface MainPost {
   id: number
   topTitle: string
   title: string
@@ -18,7 +18,7 @@ export interface MainPost {
   content: Array<object>
 }
 
-export interface Post {
+interface Post {
   id: number
   title: string
   tags: Array<string> | string
