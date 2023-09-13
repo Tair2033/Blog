@@ -118,43 +118,6 @@ export default createStore<State>({
       state.post.isLoadingPost = false
     }
   },
-  actions: {
-    isBookmarked(context, flag) {
-      context.commit('isBookmarked', flag)
-    },
-    isSettings(context, flag) {
-      context.commit('isSettings', flag)
-    },
-    login(context) {
-      context.commit('login')
-    },
-    changeFooterStatus(context) {
-      context.commit('changeFooterStatus')
-    },
-    changeModalStatus(context) {
-      context.commit('changeModalStatus')
-    },
-    changeNotifText(context, text) {
-      context.commit('changeNotifText', text)
-    },
-    changeNotifStatus(context) {
-      context.commit('changeNotifStatus')
-    },
-    changePopularLoadingStatus(context) {
-      context.commit('changePopularLoadingStatus')
-    },
-    changeNewLoadingStatus(context) {
-      context.commit('changeNewLoadingStatus')
-    },
-    changePostLoadingStatus(context) {
-      context.commit('changePostLoadingStatus')
-    },
-    changeHomeLoadingStatus(context) {
-      context.commit('changeHomeLoadingStatus')
-    },
-    updateAllLoaders(context) {
-      context.commit('updateAllLoaders')
-    }
-  },
+  actions: {},
   modules: {}
 })

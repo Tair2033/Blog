@@ -57,13 +57,13 @@ export default defineComponent({
       const inputElement = this.$refs.email as HTMLInputElement
 
       if (inputElement.value.length) {
-        store.dispatch('changeNotifText', 'You have been subscribed!')
-        store.dispatch('changeNotifStatus')
+        store.commit('changeNotifText', 'You have been subscribed!')
+        store.commit('changeNotifStatus')
 
         inputElement.value = ''
 
         const timeout = setTimeout(() => {
-          store.dispatch('changeNotifStatus')
+          store.commit('changeNotifStatus')
           clearTimeout(timeout)
         }, 2000)
       }

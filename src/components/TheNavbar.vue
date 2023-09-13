@@ -128,7 +128,7 @@ export default defineComponent({
   },
   methods: {
     updateLoaders() {
-      store.dispatch('updateAllLoaders')
+      store.commit('updateAllLoaders')
     },
     navbarItemClick() {
       this.updateLoaders()
@@ -148,7 +148,7 @@ export default defineComponent({
     toggleModalStatus() {
       const body = document.querySelector('body')
       body?.classList.toggle('active-modal')
-      store.dispatch('changeModalStatus')
+      store.commit('changeModalStatus')
     }
   }
 })

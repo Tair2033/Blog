@@ -106,7 +106,7 @@ export default {
   },
   methods: {
     updateLoaders() {
-      store.dispatch('updateAllLoaders')
+      store.commit('updateAllLoaders')
     }
   }
 }

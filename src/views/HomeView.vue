@@ -49,7 +49,7 @@ export default {
   },
   beforeMount() {
     const timeout = setTimeout(() => {
-      store.dispatch('changeHomeLoadingStatus')
+      store.commit('changeHomeLoadingStatus')
       clearTimeout(timeout)
     }, 700)
   }

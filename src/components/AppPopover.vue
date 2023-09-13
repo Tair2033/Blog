@@ -37,7 +37,7 @@ export default {
   methods: {
     itemAction(item: string) {
       if (item === 'Exit') {
-        store.dispatch('login')
+        store.commit('login')
         location.reload()
       }
     }

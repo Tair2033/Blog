@@ -80,7 +80,7 @@ export default defineComponent({
   },
   beforeMount() {
     const timeout = setTimeout(() => {
-      store.dispatch('changeNewLoadingStatus')
+      store.commit('changeNewLoadingStatus')
       clearTimeout(timeout)
     }, 700)
   },

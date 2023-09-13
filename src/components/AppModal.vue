@@ -1,48 +1,72 @@
 <template>
-  <div class="modal__wrapper" @click.stop.prevent="toggleModalStatus">
+  <div
+    class="modal__wrapper"
+    @click.stop.prevent="toggleModalStatus"
+  >
     <div class="modal">
       <div class="modal__content">
         <div class="modal__container">
-          <div class="modal__close" @click.stop.prevent="toggleModalStatus">
+          <div
+            class="modal__close"
+            @click.stop.prevent="toggleModalStatus"
+          >
             &#10008;
           </div>
           <div class="modal__cat">
             <div class="cat">
-              <div class="ear ear--left"></div>
-              <div class="ear ear--right"></div>
+              <div class="ear ear--left" />
+              <div class="ear ear--right" />
               <div class="face">
                 <div class="eye eye--left">
-                  <div class="eye-pupil"></div>
+                  <div class="eye-pupil" />
                 </div>
                 <div class="eye eye--right">
-                  <div class="eye-pupil"></div>
+                  <div class="eye-pupil" />
                 </div>
-                <div class="muzzle"></div>
+                <div class="muzzle" />
               </div>
             </div>
           </div>
           <div class="wrapper">
-            <div class="title"><span>Login</span></div>
-            <div class="modal__loader" v-if="isLogin">
+            <div class="title">
+              <span>Login</span>
+            </div>
+            <div
+              v-if="isLogin"
+              class="modal__loader"
+            >
               <AppLoader />
             </div>
-            <form action="#" v-if="!isLogin">
+            <form
+              v-if="!isLogin"
+              action="#"
+            >
               <div class="row">
-                <i class="fas fa-user"></i>
-                <input type="text" placeholder="Email or Phone" required />
+                <i class="fas fa-user" />
+                <input
+                  type="text"
+                  placeholder="Email or Phone"
+                  required
+                >
               </div>
               <div class="row">
-                <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password" required />
+                <i class="fas fa-lock" />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  required
+                >
               </div>
-              <div class="pass"><a href="#">Forgot password?</a></div>
+              <div class="pass">
+                <a href="#">Forgot password?</a>
+              </div>
               <div class="row button">
                 <input
                   type="button"
                   class="submit-btn"
-                  @focus="login"
                   value="Login"
-                />
+                  @focus="login"
+                >
               </div>
               <div class="signup-link">
                 Not a member? <a href="#">Signup now</a>
@@ -62,15 +86,21 @@ import AppLoader from './AppLoader.vue'
 
 export default defineComponent({
   name: 'AppModal',
+  components: { AppLoader },
+  computed: {
+    isLogin() {
+      return store.getters.isLogin
+    }
+  },
   methods: {
     login(e: Event) {
       const $node = e.target as HTMLElement
       const body = document.querySelector('body')
       if ($node.classList.contains('submit-btn')) {
-        store.dispatch('login')
+        store.commit('login')
         const timeout = setTimeout(() => {
           body?.classList.toggle('active-modal')
-          store.dispatch('changeModalStatus')
+          store.commit('changeModalStatus')
           clearTimeout(timeout)
         }, 2000)
       }
@@ -86,16 +116,10 @@ export default defineComponent({
         contains('modal')
       ) {
         body?.classList.toggle('active-modal')
-        store.dispatch('changeModalStatus')
+        store.commit('changeModalStatus')
       }
     }
-  },
-  computed: {
-    isLogin() {
-      return store.getters.isLogin
-    }
-  },
-  components: { AppLoader }
+  }
 })
 </script>
 

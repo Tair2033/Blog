@@ -66,7 +66,7 @@ export default {
   },
   beforeMount() {
     const timeout = setTimeout(() => {
-      store.dispatch('changePopularLoadingStatus')
+      store.commit('changePopularLoadingStatus')
       clearTimeout(timeout)
     }, 700)
   },

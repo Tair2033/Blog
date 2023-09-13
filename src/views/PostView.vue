@@ -145,13 +145,13 @@ export default defineComponent({
   },
   beforeMount() {
     const timeout = setTimeout(() => {
-      store.dispatch('changePostLoadingStatus')
+      store.commit('changePostLoadingStatus')
       clearTimeout(timeout)
     }, 1200)
   },
   methods: {
     settings(e: Event) {
-      store.dispatch('isSettings')
+      store.commit('isSettings')
 
       this.popoverSettings.position = {
         x: -100,
@@ -159,7 +159,7 @@ export default defineComponent({
       }
     },
     bookmark() {
-      store.dispatch('isBookmarked')
+      store.commit('isBookmarked')
     },
     getPost(): object | null {
       const route = useRoute()
